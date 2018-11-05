@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>SendIT | Admin:Change </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="../css/header.css" />
+    <link rel="stylesheet" type="text/css" href="../css/All-SingleOrder.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montaga" rel="stylesheet"> 
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
+</head>
+<body>
+       <header>
+            <div class="wrapper">
+                <h1 class="logo"> Admin</h1>
+                <nav>
+                    <h2>Main Navigation</h2>
+                    <div id="burger-nav"></div>
+                    <ul>
+                       
+                        <li><a href="../index.html">Logout</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+<main>        
+  <div class ="all-orders-container">
+      <blockquote>
+               <H1>ALL ORDERS</H1>
+      </blockquote>
+       
+
+<table>
+  <tr>
+    <th>Item Name</th>
+    <th>Pick Up Address</th>
+    <th>Destination</th>
+    <th>Status</th>
+    <th></th>
+    <th></th>
+  </tr>
+  <tr>
+    <td> Laptops </td>
+    <td>Lekki Phase 1</td>
+    <td>Heaven</td>
+    <td> <span class ="Pending">Pending</span> </td>
+    <td> <button class="Admin-change-status-btn">Change Status</button> </td>
+    <td> <button class ="Admin-change-location-btn">Change Location</button> </td>
+  </tr>
+  <tr>
+    <td> Laptops </td>
+    <td>Lekki Phase 1</td>
+    <td>Heaven</td>
+    <td> <span class ="Arrived">Pending</span> </td>
+    <td> <button class="Admin-change-status-btn">Change Status</button> </td>
+    <td> <button class ="Admin-change-location-btn">Change Location</button> </td>
+  </tr>
+   <tr>
+    <td> Laptops </td>
+    <td>Lekki Phase 1</td>
+    <td>Heaven</td>
+    <td> <span class ="Arrived">Pending</span> </td>
+    <td> <button class="Admin-change-status-btn">Change Status</button> </td>
+    <td> <button class ="Admin-change-location-btn">Change Location</button> </td>
+  </tr>
+   <tr>
+    <td> Laptops </td>
+    <td>Lekki Phase 1</td>
+    <td>Heaven</td>
+    <td> <span class ="Arrived">Pending</span> </td>
+    <td> <button class="Admin-change-status-btn">Change Status</button> </td>
+    <td> <button class ="Admin-change-location-btn">Change Location</button> </td>
+  </tr>
+     <tr>
+    <td> Laptops </td>
+    <td>Lekki Phase 1</td>
+    <td>Heaven</td>
+    <td> <span class ="Arrived">Pending</span> </td>
+    <td> <button class="Admin-change-status-btn">Change Status</button> </td>
+    <td> <button class ="Admin-change-location-btn">Change Location</button> </td>
+  </tr>
+    <tr>
+    <td> Laptops </td>
+    <td>Lekki Phase 1</td>
+    <td>Heaven</td>
+    <td> <span class ="Arrived">Pending</span> </td>
+    <td> <button class="Admin-change-status-btn">Change Status</button> </td>
+    <td> <button class ="Admin-change-location-btn">Change Location</button> </td>
+  </tr>
+</table>
+
+
+ <!-- Change Destination modal-->
+<div id="adminDestionModal" class="modal">
+ <div class="modal-content">
+    <span class="close">&times;</span><br>
+    
+ <form class ="Admin-edit-destination-form" method="post"> 
+<label>Destination:</label>
+ <input type="text" name ="Admin-dest-location[address]" id="AdminDestinationAdressEdit" placeholder="Enter new  Destination" required autocomplete="off">
+
+<br><label for="destination_lng">Destination Longitude</label>
+<input type="text" id="AdminEdit_destination_lng" name="AdminDestination_location[coordinates][0]" required="required" disabled>
+
+<br><label for="destination_lat">Destination Latitude</label>
+<input type="text" id="AdminEdit_destination_lat"  name="AdminDestination_location[coordinates][1]" required="required" disabled>
+  
+
+ <br><button class="sub-btn edit-dest"><span>Submit &#8594;</span></button>
+</form>  
+  </div>
+</div>
+ <!-- The Modal -->
+ 
+ </div>
+ </main> 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.28.11/dist/sweetalert2.all.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD9ycobB5RiavbXpJBo0Muz2komaqqvGv0&libraries=places"></script>   
+<script src ="../js/AdminChange.js"></script>            
+</body>

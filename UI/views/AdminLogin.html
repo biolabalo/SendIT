@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title> SendIT | Admin LogIn </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="../css/style.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montaga" rel="stylesheet"> 
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
+</head>
+<body>
+    <main>
+        <div class ="sendIt-desc">
+       <h1> Send IT </h1>
+       <p> SendIT is a courier service that helps users deliver parcels to different destinations. </p>
+    </div>
+    
+    </main>
+<section>
+<form class="sign-In-Admin">
+ <div class = "space">
+     <h1> ADMIN LOGIN </h1>
+ </div>
+
+   <br><label>Email:</label><br>
+
+  <input type="email" name="signupEmail"  class="Email" Placeholder= "Enter Your Email" required autocomplete="off">
+  <i class="email-font far fa-envelope"></i>
+   <small class="invalid-feedback i-f"> Email Is Not Valid </small>
+  
+   
+  <br><label>Password:</label><br>
+   <input name="lastname" type= "password" id="signupPassword"  placeholder="Enter Your Password" required autocomplete="off">
+<i class="fas fa-key"></i>
+ <small class="invalid-feedback i-f"> Password Must Be at Least 5 Characters </small>
+ <br>
+   
+ <a href="AdminChange.html" class="sub-btn" style="vertical-align:middle"><span>Submit &#8594;</span></a>
+    <p>Sign In as<a href = "signIn.html">  User !</a></p>
+ 
+  <small> <a href = ../index.html> <span> Home &#8594;</span> </a></small>
+</form>
+</section>
+ <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+ <script src="../js/AdminSignIn.js"></script>
+</body>

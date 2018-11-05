@@ -1,0 +1,152 @@
+    
+html , body{
+height: 100%;
+}
+
+body, ul, li{
+    margin: 0;
+    padding: 0
+}
+       
+
+main{
+    
+     width:60% ;
+     background-image: url('../images/maarten-van-den-heuvel-246398-unsplash.jpg');
+     background-size:cover;    
+     background-repeat: no-repeat;   
+     background-position: center; 
+     opacity: 1;
+ }
+       
+section{
+    width: 40%;
+    background-color: lightgoldenrodyellow;  
+    overflow-x: hidden;
+   
+       }
+       
+main , section {
+  position: relative;
+  height: 100vh;
+  float: left;
+}
+
+.sendIt-desc{
+    color : coral;
+    font-family: 'Montaga', serif;
+    font-size: 30px;
+    width: 510px;
+    padding: 20px;
+    position: absolute;
+    top: 30%;
+    left: 40%;
+    margin: -70px 0 0 -170px
+}
+
+section label{
+    margin-top: 8px;
+    display: inline-block;
+}
+
+.sign-up , .sign-In , .sign-In-Admin{
+   font-family: 'Montaga', serif;
+    font-size:15px;
+    width: 270px;
+    position: absolute;
+    top: 10%;
+    left: 65%;
+    margin: -70px 0 0 -170px 
+}
+
+.sign-In , .sign-In-Admin{
+  top: 28%;   
+}
+
+section input{
+    width:180px;
+    margin-top:8px;
+    padding:5px 5px;
+    box-sizing: border-box;       
+}
+
+section h1 {
+  font-weight: 900;       
+}
+
+button:focus { outline:0 !important; }
+
+.sub-btn{
+    background-color: darkcyan;  
+    border-top-left-radius:3px;
+    color: white;
+    font-family: 'Montaga', serif;
+    padding: 10px 35px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 10px;
+    width:150px;
+    border-style: none; 
+    outline-style: none;
+    box-shadow: 0px 17px 10px -10px rgba(0,0,0,0.4)
+}
+
+.sub-btn:hover{
+    background-color: lightcoral;
+    color: black;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+
+.space{
+    margin-bottom: 15px;
+}
+
+form a{
+    color:black
+}
+form a:hover{
+    color:mediumseagreen;
+}
+
+.i-f{
+    display: block;
+}
+
+.invalid-feedback{
+    visibility: hidden;
+}
+
+.invalid-feedback-show{
+    visibility: visible;
+    color:red;
+    margin: 10px ;
+}
+
+.is-invalid{
+    border: 2px solid red;
+    border-radius: 4px;  
+}
+
+@media screen and (max-width: 760px) {
+ main , section {
+   width: 100%;
+   float: none;
+    overflow-x: hidden;
+}
+}
+
+.email-font{
+position: relative;
+left: -30px;
+}
+
+
+.fa-key{
+position: relative;
+left: -30px;   
+}

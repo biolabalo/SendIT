@@ -1,0 +1,327 @@
+    
+html , body{
+height: 100%;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    font-family: 'Montaga', serif;
+}
+
+.main-wrap{
+     width:100%;
+     background-color: black;
+     background-image: url('../images/drew-farwell-539578-unsplash.jpg');
+     background-size:cover;    
+     background-repeat: no-repeat;   
+     background-position: center; 
+     opacity: 1;   
+     height: 600px; 
+    
+}
+
+.wrapper{
+    width: 96%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2%;
+}
+
+header{
+    background: lightgoldenrodyellow;
+    padding: 15px 0;
+     box-shadow: 0 10px 6px -6px 
+}
+
+header h1{
+    margin: 0;
+
+    width: 140px;
+    float: left;
+}
+
+header nav{
+    float: right;
+}
+
+header nav h2{
+    line-height: 0;
+    margin: 0;
+    text-indent: -10000px;
+}
+
+header nav ul{
+    margin: 0;
+    padding: 0;
+}
+
+header nav li{
+    list-style-type: none;
+    float: left;
+    margin-left: 20px;
+    margin-top: 10px;
+}
+
+header nav a{
+    text-decoration: none;
+    color: #4e4e4e;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+header nav a:hover{
+   
+    color: lightcoral;
+    
+}
+
+header:after{
+    display: block;
+    content: "";
+    clear: both;
+}
+    @media screen and (max-width: 768px){
+
+header nav{
+    float: none;
+}
+
+header nav li{
+    margin-left: 0;
+    width: 16.66%;
+    text-align: center;
+    font-size: 14px;
+}
+
+header h1.logo{
+    float: none;
+    margin: 0 auto 15px;
+}
+
+
+
+}
+
+
+@media screen and (max-width: 480px){
+
+header nav li{
+    float: none;
+    width: 100%;
+    margin: 0;
+}
+
+header nav{
+    background: #555;
+}
+
+header .wrapper{
+    padding: 0;
+    width: 100%;
+
+}
+
+header{
+    padding-bottom: 0;
+}
+
+header nav li a{
+    display: block;
+    text-align: center;
+    padding: 10px;
+    color: #999;
+    border-top: 1px solid #4f4f4f
+}
+
+
+header nav ul{
+    height: 0;
+    overflow: hidden;
+}
+
+header nav ul.open{
+    height: auto;
+}
+
+}
+
+
+
+#quote{
+    width: 60%;
+    padding: 40px 20%;
+    background-color: #efefef;
+    text-align: center;
+    color: #4e4e4e;
+    font-size: 20px;
+    line-height: 1.6em; 
+}
+
+footer{
+    background: #202020;
+    padding: 30px 0;
+    border-top: 10px solid #161616
+}
+
+footer h4{
+    margin: 0;
+    color: #555;
+    text-transform: uppercase;
+    font-size: 18px;
+}
+
+
+footer ul{
+    float: left;
+    width: 25%;
+    list-style-type: none;
+}
+
+footer li{
+    color: #aaa;
+    width: 80%;
+    margin: 20px 0;
+    font-size: 14px;
+    line-height: 1.6em;
+} 
+
+footer:after{
+    content: "";
+    display: block;
+    clear: both;
+}
+
+footer li.tw{
+    padding-left: 20px;
+}
+
+#copyright{
+    clear: both;
+    padding-top: 30px;
+    margin-top: 30px;
+    text-align: center;
+    width: 100%;
+    border-top: 2px solid #333;
+    color: #999;
+    font-size: 14px;
+}
+
+
+/* MEDIA QUERIES */
+
+@media screen and (max-width: 960px){
+
+
+footer ul{
+    width: 50%;
+}
+
+footer ul:nth-child(odd){
+    clear: both;
+}
+
+#quote{
+    width: 90%;
+    padding: 40px 5%;
+}
+
+}
+
+
+@media screen and (max-width: 768px){
+
+header nav{
+    float: none;
+}
+
+header nav li{
+    margin-left: 0;
+    width: 16.66%;
+    text-align: center;
+    font-size: 14px;
+}
+
+header h1.logo{
+    float: none;
+    margin: 0 auto 15px;
+}
+
+#latest-work li{
+    width: 60%;
+    margin: 30px 20% !important;
+    float: none;
+}
+
+#latest-work h2{
+    text-align: center;
+}
+
+}
+
+@media screen and (max-width: 480px){
+
+
+
+#latest-work li{
+    width: 80%;
+    margin: 30px 10% !important;
+}
+
+#quote{
+    font-size: 16px;
+    font-weight: bold;
+}
+
+footer ul{
+    width: 100%;
+    float: none;
+    border-top: 2px solid #333;
+}
+
+header nav li{
+    float: none;
+    width: 100%;
+    margin: 0;
+}
+
+header nav{
+    background: #555;
+}
+
+header .wrapper{
+    padding: 0;
+    width: 100%;
+
+}
+
+header{
+    padding-bottom: 0;
+}
+
+header nav li a{
+    display: block;
+    text-align: center;
+    padding: 10px;
+    color: #999;
+    border-top: 1px solid #4f4f4f
+}
+
+#burger-nav{
+    width: 100%;
+    height: 40px;
+    background: url(images/burger.png) no-repeat 98% center;
+    cursor: pointer;
+}
+
+header nav ul{
+    height: 0;
+    overflow: hidden;
+}
+
+header nav ul.open{
+    height: auto;
+}
+
+}
+
