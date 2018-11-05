@@ -1,0 +1,27 @@
+{
+  "name": "sendit",
+  "version": "1.0.0",
+  "description": "send it app for andela cycle 38",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/biolabalo/SendIT.git"
+  },
+  "author": "biola",
+  "license": "ISC",
+  "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.7.0",
+    "babel-register": "^6.26.0",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4"
+  },
+  "bugs": {
+    "url": "https://github.com/biolabalo/SendIT/issues"
+  },
+  "homepage": "https://github.com/biolabalo/SendIT#readme"
+}
