@@ -1,5 +1,5 @@
 import express from 'express';
-
+import { validateCreateParcelData } from '../helpers';
 
 import {
   getAllParcelOrder,
@@ -7,6 +7,7 @@ import {
   getParcelOrderBySpecificUser,
   verifyParcelOrderIdExist,
   cancelParcelOrder,
+  saveParcelOrder,
 } from '../controllers/orderController';
 
 
@@ -33,8 +34,11 @@ router.put('/parcels/:parcel_order_id/cancel',
             cancelParcelOrder,
             );
 
-
-//router.delete('/:parcel_order_id', ParcelOrderController.deleteParcelOrder);
+//http://localhost:5000/api/v1/parcelOrders/parcels
+router.post('/parcels',
+            validateCreateParcelData,
+            saveParcelOrder, 
+            );
 
 export default router;
 

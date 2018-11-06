@@ -83,3 +83,14 @@ export const getParcelOrderBySpecificUser = ( req , res ) => {
       }
       
  };
+
+ 
+ export const saveParcelOrder = ( req , res ) => {
+     const {id, senderName, senderEmail, senderId, receiverName, receiverEmail, itemName, itemWeight } = req.body;
+     const price = itemWeight * 50;
+    const order = {id, senderName, senderEmail, senderId, receiverName, receiverEmail, itemName, itemWeight, price }
+     
+       res.status(200).json({
+       order
+    })
+  };
