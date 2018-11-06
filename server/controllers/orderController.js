@@ -18,7 +18,7 @@ export const  getAllParcelOrder = ( req , res ) => {
 
 
 export const getParcelOrderById = ( req , res ) => {
-       console.log('hit');
+     
       const { parcel_order_id } = req.params;
      
       const doesParcelOrderIdExist  = verifyParcelOrderId(parcel_order_id); 
@@ -35,7 +35,7 @@ export const getParcelOrderById = ( req , res ) => {
 export const getParcelOrderBySpecificUser = ( req , res ) => {
 
       const { userId } = req.params;
-      console.log(userId);
+
       const doesParcelOrderExist  = parcelOrderCreatedByUser(userId); 
     
       if(!doesParcelOrderExist)  return res.status(404).send({ message: 'parcelOrder not found' });
@@ -60,10 +60,26 @@ export const getParcelOrderBySpecificUser = ( req , res ) => {
 
 
  export const cancelParcelOrder  = ( req , res ) => {
-     
+    
       const { parcel_order_id } = req.params;
      
-      const doesParcelOrderIdExist  = verifyParcelOrderId(parcel_order_id); 
-   
-         
+      const parceltoBeCancelled  = verifyParcelOrderId(parcel_order_id); 
+     
+      const status = parceltoBeCancelled[0].status;
+     
+      const is_Destination_changed_ByAdmin = parceltoBeCancelled[0].isDestinationChangedByAdmin;
+     
+     if (     status === 'delivered'
+          &&  is_Destination_changed_ByAdmin === true
+          ||  status === 'cancelled'
+        ){
+        
+       return  res.status(401).send({ message: 'You cannot cancel parcel order' });
+        
+      }else{
+          
+         parceltoBeCancelled[0].status = 'cancelled';
+         res.status(200).send(parceltoBeCancelled);
+      }
+      
  };
