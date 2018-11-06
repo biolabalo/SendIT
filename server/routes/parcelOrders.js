@@ -12,7 +12,14 @@ import {
 
 const router = express.Router();
 
-router.get('/', getAllParcelOrder);
+
+
+
+router.get('/',  (req, res) => {
+  res.status(200).send({ message: 'welcome to SendIT' });
+});
+
+router.get('/parcels' , getAllParcelOrder );
 
 //http://localhost:5000/api/v1/parcelOrders/parcels/234
 router.get('/parcels/:parcel_order_id', getParcelOrderById );
@@ -23,7 +30,7 @@ router.get('/users/:userId/parcels',  getParcelOrderBySpecificUser );
 //http://localhost:5000/api/v1/parcelOrders/parcels/1/cancel
 router.put('/parcels/:parcel_order_id/cancel',
             verifyParcelOrderIdExist,
-            cancelParcelOrder
+            cancelParcelOrder,
             );
 
 

@@ -27,6 +27,7 @@ class ParcelOrdersDb {
                    },
       orderDate : '03-09-2018',   
       estimatedDeliveryDate: '04-09-2018',
+      isDestinationChangedByAdmin: true,
       status: 'delivered',
   },
     
@@ -56,10 +57,39 @@ class ParcelOrdersDb {
                           },
       orderDate : '03-09-2018',   
       estimatedDeliveryDate: '04-09-2018',
+      isDestinationChangedByAdmin: false,
       status: 'cancelled',
   },
 
-
+  {
+      id: 3 ,
+      senderName:  'Xrole dialond',
+      senderEmail: 'xrole@gmail.com',
+      senderId: '193abi9',
+      receiverName: 'shola',
+      receiverEmail: 'shola@gmail.com',
+      itemName: '12 pieces of shampo',
+      itemWeight: 5,
+      price: 7000,
+      pickupLocation: {
+      address: '23 , Bisi olatunji street Ojodu Berger',
+      coordinates: [ 
+                  1.2,
+                  3.4,
+                   ],
+                      },
+      destinationLocation: {
+      address: 'Andela Towers Ikorudu',
+      coordinates: [ 
+                  9.2,
+                  3.4,
+                 ],
+                   },
+      orderDate : '03-09-2018',   
+      estimatedDeliveryDate: '04-09-2018',
+      isDestinationChangedByAdmin: false,
+      status: 'pending',
+  },
 
 ];
          
@@ -71,6 +101,3 @@ class ParcelOrdersDb {
 export default new ParcelOrdersDb();
 
 
-
-
-npm install  -- dev eslint eslint-config-airbnb-base eslint-plugin-import
