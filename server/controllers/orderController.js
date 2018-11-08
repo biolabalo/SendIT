@@ -1,5 +1,6 @@
 import parcelOrderDB from '../model/parcelOrderDB';
 
+
 import  { 
        verifyParcelOrderId,
        parcelOrderCreatedByUser,
@@ -19,9 +20,9 @@ export const  getAllParcelOrder = ( req , res ) => {
 
 export const getParcelOrderById = ( req , res ) => {
      
-      const { parcel_order_id } = req.params;
+      const { parcel_id } = req.params;
      
-      const doesParcelOrderIdExist  = verifyParcelOrderId(parcel_order_id); 
+      const doesParcelOrderIdExist  = verifyParcelOrderId(parcel_id); 
       
       if(!doesParcelOrderIdExist)  return res.status(404).send({ message: 'parcelOrder not found' });
       
@@ -47,9 +48,9 @@ export const getParcelOrderBySpecificUser = ( req , res ) => {
   
  export const verifyParcelOrderIdExist  = ( req , res , next  ) => {
 
-      const { parcel_order_id } = req.params;
+      const { parcel_id } = req.params;
      
-      const doesParcelOrderIdExist  = verifyParcelOrderId(parcel_order_id); 
+      const doesParcelOrderIdExist  = verifyParcelOrderId(parcel_id); 
     
       if(!doesParcelOrderIdExist)  return res.status(404).send({ message: 'parcelOrder not found' });
       
@@ -61,15 +62,16 @@ export const getParcelOrderBySpecificUser = ( req , res ) => {
 
  export const cancelParcelOrder  = ( req , res ) => {
     
-      const { parcel_order_id } = req.params;
+      const { parcel_id } = req.params;
      
-      const parceltoBeCancelled  = verifyParcelOrderId(parcel_order_id); 
+      const parceltoBeCancelled  = verifyParcelOrderId(parcel_id); 
      
       const status = parceltoBeCancelled[0].status;
      
       const is_Destination_changed_ByAdmin = parceltoBeCancelled[0].isDestinationChangedByAdmin;
      
-     if (     status === 'delivered'
+    
+     if (  status === 'delivered'
           &&  is_Destination_changed_ByAdmin === true
           ||  status === 'cancelled'
         ){
@@ -79,18 +81,29 @@ export const getParcelOrderBySpecificUser = ( req , res ) => {
       }else{
           
          parceltoBeCancelled[0].status = 'cancelled';
-         res.status(200).send(parceltoBeCancelled);
-      }
+         res.status(200).send(parceltoBeCancelled[0]);
+      };
       
  };
 
  
- export const saveParcelOrder = ( req , res ) => {
-     const {id, senderName, senderEmail, senderId, receiverName, receiverEmail, itemName, itemWeight } = req.body;
-     const price = itemWeight * 50;
-    const order = {id, senderName, senderEmail, senderId, receiverName, receiverEmail, itemName, itemWeight, price }
+ export const saveParcelOrder =  ( req , res ) => {
      
-       res.status(200).json({
-       order
-    })
-  };
+     const { id, 
+            senderName,
+            senderEmail,
+            senderId,
+            receiverName,
+            receiverEmail,
+            itemName,
+            address,
+            itemWeight,
+            pickUpAddress,
+            destinationAddress, } = req.body;
+     
+    
+    const price = itemWeight * 50;
+    const order = {id, senderName, senderEmail, senderId, receiverName, receiverEmail, itemName, itemWeight, price }
+ 
+       res.status(200).json({  order })
+ };

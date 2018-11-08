@@ -23,17 +23,21 @@ export const parcelOrderCreatedByUser = (id) => {
 };
 
 
-
-
 export const isNumber = number => {
   return !isNaN(number);
 };
 
 export const validateString = string => {
   if (typeof string !== 'string') return false;
-  if (string.length < 2 || string.length > 250) return false;
+  if (string.length < 3 || string.length > 250) return false;
   const validString = /^[a-zA-Z-'\s\d]+$/;
   return string.trim().match(validString);
+};
+
+export const validateAddress = string => {
+  if (typeof string !== 'string') return false;
+  if (string.length < 5 || string.length > 250) return false;
+   return true;
 };
 
 export const checkValidEmail = email => {
@@ -51,14 +55,15 @@ export const validateCreateParcelData = (req, res, next) => {
     receiverEmail,
     itemName,
     itemWeight,
-    address,
+    pickUpAddress,
+    destinationAddress,
   } = req.body;
 
 
     
   if (!validateString(receiverName)) {
     return res.status(400).json({
-      error: 'name cannot be empty'
+      error: 'name cannot be empty and must be at least three characters'
     });
   }
   if (!checkValidEmail(receiverEmail)) {
@@ -69,22 +74,31 @@ export const validateCreateParcelData = (req, res, next) => {
 
   if (!validateString(itemName)) {
     return res.status(400).json({
-      error: 'parcel name cannot be empty'
+      error: 'parcel name cannot be empty and must be at least three characters'
     });
   }
-
-  if ( itemWeight <= 0 || !isNumber( itemWeight)) {
+    
+   if (itemWeight <= 0 || !isNumber(itemWeight)) {
     return res.status(400).json({
       error:
-        'invalid input. The weight cannot be empty and must be greater than zero'
+        'invalid input. The weight cannot be empty  must be greater than zero and a number'
     });
-  }
-  if (!validateString(address)) {
+  }  
+    
+    
+    
+    
+    
+  if (!validateAddress(pickUpAddress)) {
     return res.status(400).json({
-      error: 'address cannot be empty'
+      error: 'pick up address cannot be empty and must be at least five characters'
     });
   }
-
+if (!validateAddress(destinationAddress)) {
+    return res.status(400).json({
+      error: 'Destination address cannot be empty and must be at least five characters'
+    });
+  }
 
   return next();
 };
