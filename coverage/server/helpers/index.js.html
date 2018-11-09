@@ -37,7 +37,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>40/40</span>
+        <span class='fraction'>39/39</span>
       </div>
     </div>
     <p class="quiet">
@@ -136,49 +136,25 @@
 <a name='L88'></a><a href='#L88'>88</a>
 <a name='L89'></a><a href='#L89'>89</a>
 <a name='L90'></a><a href='#L90'>90</a>
-<a name='L91'></a><a href='#L91'>91</a>
-<a name='L92'></a><a href='#L92'>92</a>
-<a name='L93'></a><a href='#L93'>93</a>
-<a name='L94'></a><a href='#L94'>94</a>
-<a name='L95'></a><a href='#L95'>95</a>
-<a name='L96'></a><a href='#L96'>96</a>
-<a name='L97'></a><a href='#L97'>97</a>
-<a name='L98'></a><a href='#L98'>98</a>
-<a name='L99'></a><a href='#L99'>99</a>
-<a name='L100'></a><a href='#L100'>100</a>
-<a name='L101'></a><a href='#L101'>101</a>
-<a name='L102'></a><a href='#L102'>102</a>
-<a name='L103'></a><a href='#L103'>103</a>
-<a name='L104'></a><a href='#L104'>104</a>
-<a name='L105'></a><a href='#L105'>105</a>
-<a name='L106'></a><a href='#L106'>106</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L91'></a><a href='#L91'>91</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">21x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">12x</span>
@@ -198,7 +174,6 @@
 <span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -213,7 +188,6 @@
 <span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -239,9 +213,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -255,50 +226,40 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import parcelOrderDB from '../model/parcelOrderDB';
 &nbsp;
 &nbsp;
-export const verifyParcelOrderId  = (id) =&gt; {
-   
-    const { parcelOrders } = parcelOrderDB;
-    
-    const  singleParcel = parcelOrders.filter( each =&gt; each.id == id )
-   
-    return singleParcel.length === 0 ? false  :   singleParcel;
-    
-}
+export const verifyParcelOrderId = (id) =&gt; {
+  const { parcelOrders } = parcelOrderDB;
+  const singleParcel = parcelOrders.filter(each =&gt; each.id === Number(id));
+  return singleParcel.length === 0 ? false : singleParcel;
+};
 &nbsp;
 &nbsp;
 export const parcelOrderCreatedByUser = (id) =&gt; {
-&nbsp;
-    const { parcelOrders } = parcelOrderDB;
-    
-    const  ParcelCreatedByUser =  parcelOrders.filter( each =&gt;  each.senderId  ===  id  );
-    
-    return ParcelCreatedByUser.length === 0 ?  false  :  ParcelCreatedByUser;
-    
+  const { parcelOrders } = parcelOrderDB;
+  const ParcelCreatedByUser = parcelOrders.filter(each =&gt; each.senderId === id);
+  return ParcelCreatedByUser.length === 0 ? false : ParcelCreatedByUser;
 };
 &nbsp;
 &nbsp;
-export const isNumber = number =&gt; {
-  return !isNaN(number);
-};
+// eslint-disable-next-line no-restricted-globals
+export const isNumber = number =&gt; !isNaN(number);
 &nbsp;
-export const validateString = string =&gt; {
+export const validateString = (string) =&gt; {
   <span class="missing-if-branch" title="if path not taken" >I</span>if (typeof string !== 'string') <span class="cstat-no" title="statement not covered" >return false;</span>
   if (string.length &lt; 3 || string.length &gt; 250) return false;
   const validString = /^[a-zA-Z-'\s\d]+$/;
   return string.trim().match(validString);
 };
 &nbsp;
-export const validateAddress = string =&gt; {
+export const validateAddress = (string) =&gt; {
   <span class="missing-if-branch" title="if path not taken" >I</span>if (typeof string !== 'string') <span class="cstat-no" title="statement not covered" >return false;</span>
   if (string.length &lt; 5 || string.length &gt; 250) return false;
-   return true;
+  return true;
 };
 &nbsp;
-export const checkValidEmail = email =&gt; {
+export const checkValidEmail = (email) =&gt; {
   const reg = /^(([^&lt;&gt;()[\]\\.,;:\s@"]+(\.[^&lt;&gt;()\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   const isValid = reg.test(String(email).toLowerCase());
   if (!isValid) return false;
@@ -306,9 +267,8 @@ export const checkValidEmail = email =&gt; {
 };
 &nbsp;
 &nbsp;
-&nbsp;
 export const validateCreateParcelData = (req, res, next) =&gt; {
- const {
+  const {
     receiverName,
     receiverEmail,
     itemName,
@@ -318,56 +278,51 @@ export const validateCreateParcelData = (req, res, next) =&gt; {
   } = req.body;
 &nbsp;
 &nbsp;
-    
   if (!validateString(receiverName)) {
     return res.status(400).json({
-      error: 'name cannot be empty and must be at least three characters'
+      error: 'name cannot be empty and must be at least three characters',
     });
   }
   if (!checkValidEmail(receiverEmail)) {
     return res.status(400).json({
-      error: 'email is invalid'
+      error: 'email is invalid',
     });
   }
 &nbsp;
   if (!validateString(itemName)) {
     return res.status(400).json({
-      error: 'parcel name cannot be empty and must be at least three characters'
+      error: 'parcel name cannot be empty and must be at least three characters',
     });
   }
-    
-   if (itemWeight &lt;= 0 || !isNumber(itemWeight)) {
+&nbsp;
+  if (itemWeight &lt;= 0 || !isNumber(itemWeight)) {
     return res.status(400).json({
       error:
-        'invalid input. The weight cannot be empty  must be greater than zero and a number'
-    });
-  }  
-    
-    
-    
-    
-    
-  if (!validateAddress(pickUpAddress)) {
-    return res.status(400).json({
-      error: 'pick up address cannot be empty and must be at least five characters'
+        'invalid input. The weight cannot be empty  must be greater than zero and a number',
     });
   }
-if (!validateAddress(destinationAddress)) {
+&nbsp;
+&nbsp;
+  if (!validateAddress(pickUpAddress)) {
     return res.status(400).json({
-      error: 'Destination address cannot be empty and must be at least five characters'
+      error: 'pick up address cannot be empty and must be at least five characters',
+    });
+  }
+  if (!validateAddress(destinationAddress)) {
+    return res.status(400).json({
+      error: 'Destination address cannot be empty and must be at least five characters',
     });
   }
 &nbsp;
   return next();
 };
-&nbsp;
 &nbsp;</pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Thu Nov 08 2018 11:39:33 GMT+0100 (W. Central Africa Standard Time)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Fri Nov 09 2018 20:18:17 GMT+0100 (W. Central Africa Standard Time)
 </div>
 </div>
 <script src="..\..\prettify.js"></script>

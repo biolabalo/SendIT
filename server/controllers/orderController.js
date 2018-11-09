@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import parcelOrderDB from '../model/parcelOrderDB';
 
 
@@ -19,7 +20,7 @@ export const getParcelOrderById = (req, res) => {
 
   if (!doesParcelOrderIdExist) return res.status(404).send({ message: 'parcelOrder not found' });
 
-  res.status(200).json({ result: doesParcelOrderIdExist });
+  return res.status(200).json({ result: doesParcelOrderIdExist });
 };
 
 
@@ -30,7 +31,7 @@ export const getParcelOrderBySpecificUser = (req, res) => {
 
   if (!doesParcelOrderExist) return res.status(404).send({ message: 'parcelOrder not found' });
 
-  res.status(200).json({ result: doesParcelOrderExist });
+  return res.status(200).json({ result: doesParcelOrderExist });
 };
 
 
@@ -41,24 +42,18 @@ export const verifyParcelOrderIdExist = (req, res, next) => {
 
   if (!doesParcelOrderIdExist) return res.status(404).send({ message: 'parcelOrder not found' });
 
-  next();
+  return next();
 };
 
 
+// eslint-disable-next-line consistent-return
 export const cancelParcelOrder = (req, res) => {
   const { parcel_id } = req.params;
 
   const parceltoBeCancelled = verifyParcelOrderId(parcel_id);
+  const { status } = parceltoBeCancelled[0];
 
-  const status = parceltoBeCancelled[0].status;
-
-  const is_Destination_changed_ByAdmin = parceltoBeCancelled[0].isDestinationChangedByAdmin;
-
-
-  if (status === 'delivered'
-          && is_Destination_changed_ByAdmin === true
-          || status === 'cancelled'
-  ) {
+  if (status === 'cancelled' || status === 'delivered') {
     return res.status(401).send({ message: 'You cannot cancel parcel order' });
   }
 
@@ -94,6 +89,9 @@ export const saveParcelOrder = (req, res) => {
     itemName,
     itemWeight,
     price,
+    address,
+    pickUpAddress,
+    destinationAddress,
   };
 
   res.status(200).json({ order });

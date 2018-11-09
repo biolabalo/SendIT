@@ -3,7 +3,7 @@ import parcelOrderDB from '../model/parcelOrderDB';
 
 export const verifyParcelOrderId = (id) => {
   const { parcelOrders } = parcelOrderDB;
-  const singleParcel = parcelOrders.filter(each => each.id === id);
+  const singleParcel = parcelOrders.filter(each => each.id === Number(id));
   return singleParcel.length === 0 ? false : singleParcel;
 };
 

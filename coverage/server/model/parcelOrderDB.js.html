@@ -144,19 +144,9 @@
 <a name='L96'></a><a href='#L96'>96</a>
 <a name='L97'></a><a href='#L97'>97</a>
 <a name='L98'></a><a href='#L98'>98</a>
-<a name='L99'></a><a href='#L99'>99</a>
-<a name='L100'></a><a href='#L100'>100</a>
-<a name='L101'></a><a href='#L101'>101</a>
-<a name='L102'></a><a href='#L102'>102</a>
-<a name='L103'></a><a href='#L103'>103</a>
-<a name='L104'></a><a href='#L104'>104</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L99'></a><a href='#L99'>99</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -253,115 +243,110 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">class ParcelOrdersDb {
-    constructor() {
-        this.parcelOrders = [
-   {
-      id: 1 ,
-      senderName:  'Abiola Balogun',
-      senderEmail: 'Abiola@gmail.com',
-      senderId: '123abi3',
-      receiverName: 'Busola',
-      receiverEmail: 'busola@gmail.com',
-      itemName: '12 Bags of cement',
-      itemWeight: 5,
-      price: 3000,
-      pickupLocation: {
-      address: '23 , Bisi olatunji street Ojodu Berger',
-      coordinates: [ 
-                  1.2,
-                  3.4,
-                   ],
-                      },
-      destinationLocation: {
-      address: 'Andela Towers Ikorudu',
-      coordinates: [ 
-                  9.2,
-                  3.4,
-                 ],
-                   },
-      orderDate : '03-09-2018',   
-      estimatedDeliveryDate: '04-09-2018',
-      isDestinationChangedByAdmin: true,
-      status: 'delivered',
-  },
-    
-  {
-      id: 2,
-      senderName:  'Akeem Korede',
-      senderEmail: 'Akeem@gmail.com',
-      senderId: '463acp4',
-      receiverName: 'Busola',
-      receiverEmail: 'buso@gmail.com',
-      itemName: '12 karet Diamonds',
-      itemWeight: 5,
-      price: 3000,
-      pickupLocation: {
-      address: 'Aso rock Abuja',
-      coordinates: [ 
-                   1.3,
-                   1.7,
-                   ],
-                      },
-      destinationLocation: {
-      address: 'Silver Bird Cinemas Yaba',
-      coordinates: [ 
-                   1.3,
-                   2.5,
-                   ],
-                          },
-      orderDate : '03-09-2018',   
-      estimatedDeliveryDate: '04-09-2018',
-      isDestinationChangedByAdmin: false,
-      status: 'cancelled',
-  },
+  constructor() {
+    this.parcelOrders = [
+      {
+        id: 1,
+        senderName: 'Abiola Balogun',
+        senderEmail: 'Abiola@gmail.com',
+        senderId: '123abi3',
+        receiverName: 'Busola',
+        receiverEmail: 'busola@gmail.com',
+        itemName: '12 Bags of cement',
+        itemWeight: 5,
+        price: 3000,
+        pickupLocation: {
+          address: '23 , Bisi olatunji street Ojodu Berger',
+          coordinates: [
+            1.2,
+            3.4,
+          ],
+        },
+        destinationLocation: {
+          address: 'Andela Towers Ikorudu',
+          coordinates: [
+            9.2,
+            3.4,
+          ],
+        },
+        orderDate: '03-09-2018',
+        estimatedDeliveryDate: '04-09-2018',
+        isDestinationChangedByAdmin: true,
+        status: 'delivered',
+      },
 &nbsp;
-  {
-      id: 3 ,
-      senderName:  'Xrole dialond',
-      senderEmail: 'xrole@gmail.com',
-      senderId: '193abi9',
-      receiverName: 'shola',
-      receiverEmail: 'shola@gmail.com',
-      itemName: '12 pieces of shampo',
-      itemWeight: 5,
-      price: 7000,
-      pickupLocation: {
-      address: '23 , Bisi olatunji street Ojodu Berger',
-      coordinates: [ 
-                  1.2,
-                  3.4,
-                   ],
-                      },
-      destinationLocation: {
-      address: 'Andela Towers Ikorudu',
-      coordinates: [ 
-                  9.2,
-                  3.4,
-                 ],
-                   },
-      orderDate : '03-09-2018',   
-      estimatedDeliveryDate: '04-09-2018',
-      isDestinationChangedByAdmin: false,
-      status: 'pending',
-  },
+      {
+        id: 2,
+        senderName: 'Akeem Korede',
+        senderEmail: 'Akeem@gmail.com',
+        senderId: '463acp4',
+        receiverName: 'Busola',
+        receiverEmail: 'buso@gmail.com',
+        itemName: '12 karet Diamonds',
+        itemWeight: 5,
+        price: 3000,
+        pickupLocation: {
+          address: 'Aso rock Abuja',
+          coordinates: [
+            1.3,
+            1.7,
+          ],
+        },
+        destinationLocation: {
+          address: 'Silver Bird Cinemas Yaba',
+          coordinates: [
+            1.3,
+            2.5,
+          ],
+        },
+        orderDate: '03-09-2018',
+        estimatedDeliveryDate: '04-09-2018',
+        isDestinationChangedByAdmin: false,
+        status: 'cancelled',
+      },
 &nbsp;
-];
-         
-    }
-    
-    
-};
+      {
+        id: 3,
+        senderName: 'Xrole dialond',
+        senderEmail: 'xrole@gmail.com',
+        senderId: '193abi9',
+        receiverName: 'shola',
+        receiverEmail: 'shola@gmail.com',
+        itemName: '12 pieces of shampo',
+        itemWeight: 5,
+        price: 7000,
+        pickupLocation: {
+          address: '23 , Bisi olatunji street Ojodu Berger',
+          coordinates: [
+            1.2,
+            3.4,
+          ],
+        },
+        destinationLocation: {
+          address: 'Andela Towers Ikorudu',
+          coordinates: [
+            9.2,
+            3.4,
+          ],
+        },
+        orderDate: '03-09-2018',
+        estimatedDeliveryDate: '04-09-2018',
+        isDestinationChangedByAdmin: false,
+        status: 'pending',
+      },
+&nbsp;
+    ];
+  }
+}
 &nbsp;
 export default new ParcelOrdersDb();
-&nbsp;
-&nbsp;
 &nbsp;</pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Thu Nov 08 2018 11:39:33 GMT+0100 (W. Central Africa Standard Time)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Fri Nov 09 2018 20:18:17 GMT+0100 (W. Central Africa Standard Time)
 </div>
 </div>
 <script src="..\..\prettify.js"></script>
