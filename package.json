@@ -4,13 +4,13 @@
   "description": "send it app for andela cycle 38",
   "main": "app.js",
   "scripts": {
-     "dev": "nodemon --require babel-register server/app.js",
+    "dev": "nodemon --require babel-register server/app.js",
     "start": "node --require babel-register server/app.js",
     "test": " nyc ---reporter=html --reporter=text mocha --timeout 10000 --exit --require babel-register server/test/*",
-     "coverage": "nyc report ---reporter=text-lcov | coveralls"
+    "coverage": "nyc report ---reporter=text-lcov | coveralls"
   },
- "engines": {
-     "node": "8.9.1"
+  "engines": {
+    "node": "8.9.1"
   },
   "repository": {
     "type": "git",
