@@ -1,12 +1,12 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import parcelOrdersRoutes from './routes/parcelOrders';
+import userRoutes from './routes/user';
 
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-
 
 app.get('/api/v1', (req, res) => res.status(200).send({
   status: 'connection successful',
@@ -14,6 +14,7 @@ app.get('/api/v1', (req, res) => res.status(200).send({
 }));
 
 app.use('/api/v1', parcelOrdersRoutes);
+app.use('/api/v1', userRoutes);
 
 app.use('*', (req, res) => {
   res.status(404).json({ message: 'Page Not Found. Please go to /api/v1 to use our api' });

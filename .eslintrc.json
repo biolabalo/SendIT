@@ -1,0 +1,43 @@
+{
+    "extends": "airbnb-base",
+    "env": {
+      "browser": true,
+      "node": true,
+      "es6": true,
+      "mocha": true
+  },
+    "rules": {
+      "no-use-before-define": ["error", {
+        "variables": false
+      }],
+      "no-const-assign": "error",
+      "no-this-before-super": "warn",
+      "no-undef": "error",
+      "no-unreachable": "warn",
+      "no-unused-vars": "warn",
+      "valid-typeof": "warn",
+      "max-len": [
+        "warn",
+        120
+  ],
+      "import/prefer-default-export": "warn",
+      "linebreak-style": "off",
+      "no-shadow": "off",
+      "class-methods-use-this": "off",
+      "consistent-return": "off",
+      "no-param-reassign": "off",
+      "import/no-extraneous-dependencies": "off",
+      "no-unused-expressions": "off",
+      "no-useless-escape": "off",
+      "camelcase": "off",
+      "prefer-destructuring": "off",
+      "quotes": [
+        "error",
+        "single",
+        {
+          "allowTemplateLiterals": false,
+          "avoidEscape": true
+        }
+  ]
+    }
+  }
