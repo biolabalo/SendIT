@@ -7,7 +7,6 @@ export default class createFunctionValidators {
   }
 
   static isNumber(number) {
-    // eslint-disable-next-line no-restricted-globals
     return !isNaN(number);
   }
 
