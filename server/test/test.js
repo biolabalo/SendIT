@@ -255,7 +255,7 @@ describe('SendIT', () => {
           expect(res).to.have.status(400);
           expect(res).to.not.redirect;
           expect(res.body).to.be.an('object');
-          expect(res.body).to.have.property('error').eql('pick up address cannot be empty and must be at least five characters');
+          expect(res.body).to.have.property('error').eql('Address cannot be empty and must be at least five characters');
           done();
         });
     });
@@ -280,7 +280,7 @@ describe('SendIT', () => {
           expect(res).to.have.status(400);
           expect(res).to.not.redirect;
           expect(res.body).to.be.an('object');
-          expect(res.body).to.have.property('error').eql('Destination address cannot be empty and must be at least five characters');
+          expect(res.body).to.have.property('error').eql('Address cannot be empty and must be at least five characters');
           done();
         });
     });
