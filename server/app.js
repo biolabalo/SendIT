@@ -2,6 +2,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import parcelOrdersRoutes from './routes/parcelOrders';
 import userRoutes from './routes/user';
+import 'babel-polyfill';
 
 const app = express();
 
