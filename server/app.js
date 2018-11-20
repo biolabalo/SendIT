@@ -14,7 +14,7 @@ app.get('/api/v1', (req, res) => res.status(200).send({
   message: 'Welcome to SendIT!',
 }));
 
-app.use('/api/v1', parcelOrdersRoutes);
+app.use('/api/v1/parcels', parcelOrdersRoutes);
 app.use('/api/v1', userRoutes);
 
 app.use('*', (req, res) => {
