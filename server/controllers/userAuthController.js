@@ -72,6 +72,44 @@ class userAuthControllerClass {
       res.json({ status: 200, error });
     }
   }
+
+  static async login(req, res) {
+    if (!req.body.email || !req.body.password) {
+      return res.status(400).send({ status: 400, message: 'Some values are missing' });
+    }
+    if (!userAuthHelper.isValidEmail(req.body.email)) {
+      return res.status(400).send({ status: 400, message: 'Please enter a valid email address' });
+    }
+    if (!userAuthHelper.ispasswordValid(req.body.password)) {
+      return res.status(400).send({ status: 404, error: 'Password Must Be at least Five Characters' });
+    }
+    const text = 'SELECT * FROM users WHERE email = $1';
+    try {
+      const { rows } = await db(text, [req.body.email]);
+      if (!rows[0]) {
+        return res.status(400).send({ status: 400, message: 'Invalid Email / Password' });
+      }
+      if (!userAuthHelper.comparePassword(rows[0].password, req.body.password)) {
+        return res.status(400).send({ status: 400, message: 'The credentials you provided Are incorrect' });
+      }
+      const token = jwt.sign({ userId: rows[0].id, isAdmin: rows[0].isadmin },
+        process.env.jwt_privateKey);
+
+      return res.status(200).header('x-auth-token', token).json({
+        status: 200,
+        data: [{
+          token,
+          user: rows[0],
+          message: `Welcome ${rows[0].fullname}`,
+        }],
+      });
+    } catch (error) {
+      return res.status(400).json({
+        error: 400,
+        message: 'incorrect credentials',
+      });
+    }
+  }
 }
 
 export default userAuthControllerClass;
