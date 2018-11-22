@@ -18,6 +18,7 @@ const createParcelTable = () => {
   const queryText = `CREATE TABLE IF NOT EXISTS
       parcelorders(
         id UUID PRIMARY KEY,
+        sender_id UUID NOT NULL,
         item_name VARCHAR(300) NOT NULL,
         destination_address VARCHAR(300) NOT NULL,
         pickup_address VARCHAR(300) NOT NULL,
@@ -25,12 +26,9 @@ const createParcelTable = () => {
         created_date TIMESTAMP,
         receiver_name VARCHAR(300) NOT NULL,
         receiver_email VARCHAR(300) NOT NULL,
-        sender_id UUID NOT NULL,
         item_weight REAL NOT NULL,
         status VARCHAR(40) NOT NULL,
-        isDestinationChangedByAdmin BOOLEAN NOT NULL,
         FOREIGN KEY (sender_id) REFERENCES users (id) ON DELETE CASCADE
-
       )`;
 
   pool.query(queryText)

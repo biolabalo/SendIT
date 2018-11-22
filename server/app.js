@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import 'babel-polyfill';
 import parcelOrdersRoutes from './routes/parcelOrders';
 import userAuthRoutes from './routes/userAuth';
+import userRoutes from './routes/user';
 
 dotenv.config();
 const app = express();
@@ -18,7 +19,7 @@ app.get('/api/v1', (req, res) => res.status(200).send({
 
 app.use('/api/v1/parcels', parcelOrdersRoutes);
 app.use('/api/v1/auth', userAuthRoutes);
-app.use('/api/v1', userAuthRoutes);
+app.use('/api/v1/users', userRoutes);
 
 app.use('*', (req, res) => {
   res.status(404).json({ message: 'Page Not Found. Please go to /api/v1 to use our api' });

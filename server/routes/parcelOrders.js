@@ -1,31 +1,34 @@
 import express from 'express';
 import validator from '../helpers/createOrderValidator';
 import OrderController from '../controllers/orderController';
+import verifyTokenObj from '../helpers/verifyTokenMiddleware';
+import verifyIsAdminClass from '../helpers/verifyIsAdmin';
 
 const router = express.Router();
 
 const { validateCreateParcelData } = validator;
-
+const { verifyToken } = verifyTokenObj;
+const { verifyIsAdmin } = verifyIsAdminClass;
 const {
   getParcelOrderById,
   cancelParcelOrder,
   createParcelOrder,
-  getAllParcelOrder,
+  getAllParcelOrders,
 } = OrderController;
 
-router.get('/', getAllParcelOrder);
+router.get('/', verifyToken, verifyIsAdmin, getAllParcelOrders);
 
 // http://localhost:5000/api/v1/parcels/234
-router.get('/:parcel_id',
+router.get('/:parcel_id', verifyToken,
   getParcelOrderById);
 
 // http://localhost:5000/api/v1/parcels/1/cancel
-router.put('/:parcel_id/cancel',
-  cancelParcelOrder);
+router.put('/:parcel_id/cancel', verifyToken, cancelParcelOrder);
 
 // http://localhost:5000/api/v1/parcels
 router.post('/',
-  // validateCreateParcelData,
+  verifyToken,
+  validateCreateParcelData,
   createParcelOrder);
 
 export default router;
