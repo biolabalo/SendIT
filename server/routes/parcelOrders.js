@@ -14,6 +14,7 @@ const {
   cancelParcelOrder,
   createParcelOrder,
   getAllParcelOrders,
+  changeParcelDestination,
 } = OrderController;
 
 router.get('/', verifyToken, verifyIsAdmin, getAllParcelOrders);
@@ -30,5 +31,8 @@ router.post('/',
   verifyToken,
   validateCreateParcelData,
   createParcelOrder);
+
+  // http://localhost:5000/api/v1/parcels/1/cancel
+router.put('/:parcel_id/destination', verifyToken, changeParcelDestination);
 
 export default router;

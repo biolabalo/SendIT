@@ -2,6 +2,9 @@
 import moment from 'moment';
 import uuidv4 from 'uuid/v4';
 import db from '../db/dbconnect';
+import createFunctionValidators from '../helpers/createFunctionValidators'
+
+const { validateAddress } =  createFunctionValidators;
 
 export default class OrderController {
   /**
@@ -137,4 +140,51 @@ export default class OrderController {
       });
     }
   }
+
+  
+  /**
+   * change   A parcel Order Destination
+   * @param {object} req
+   * @param {object} res
+   * @returns {object} parcelOrderController object
+   */
+  static async changeParcelDestination(req, res) {
+    const { destinationAddress } = req.body;
+    const { parcel_id } = req.params;
+    const text = 'UPDATE parcelorders SET destination_address = $1 WHERE parcelId = $2 RETURNING *';
+
+    try {
+      const { rows } = await db('SELECT * FROM parcelorders WHERE id = $1', [parcel_id]);
+      if (req.user.userId !== rows[0].sender_id) {
+        res.status(403).send({ message: 'Only Users Who created the resource Can Access' });
+      }
+     if(!validateAddress(destination_address)) {
+      return res.status(400).json({
+        error: 'Address cannot be empty and must be at least five characters',
+      });
+     }
+
+      if (result[0].status === 'In Transit' || result[0].status === 'Placed') {
+         const { rows } = await db(text, [parcel_id , destinationAddress]);
+        res.status(200).send({
+          status : 200,
+          success: true,
+          orders: rows[0],
+        });
+      } else {
+        return res.status(401).send({
+          status: 401,
+          success: false,
+          message: 'You Cannot Change Destination',
+        });
+      }
+
+    } catch (error) {
+      return res.status(400).send({
+        success: false,
+        message: 'Parcel Order not Found',
+      });
+    }
+  }
+
 }

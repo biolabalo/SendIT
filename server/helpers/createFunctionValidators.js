@@ -12,7 +12,7 @@ export default class createFunctionValidators {
 
   static validateAddress(string) {
     if (typeof string !== 'string') return false;
-    if (string.length < 5 || string.length > 250) return false;
+    if (string.length < 5 || string.length > 350) return false;
     return true;
   }
 
