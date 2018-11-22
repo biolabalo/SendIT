@@ -13,6 +13,7 @@ class userAuthControllerClass {
    * @returns {object} reflection object
    */
   static async createUser(req, res) {
+
     if (!req.body.email || !req.body.password || !req.body.confirmPassword || !req.body.fullname) {
       return res.status(400).send({ status: 404, error: 'Some values are missing' });
     }
