@@ -10,13 +10,15 @@ export default class OrderController {
    * @param {object} res
    * @returns {object} parcelOrder array
    */
-  static async getAllParcelOrder(req, res) {
-    const findAllQuery = 'SELECT * FROM parcelorders';
+  static async getAllParcelOrders(req, res) {
     try {
-      const { rows, rowCount } = await db(findAllQuery);
-      return res.status(200).send({ rows, rowCount });
+      const result = await db('SELECT * FROM parcelorders');
+      return res.status(200).send({
+        status: 200,
+        data: result.rows,
+      });
     } catch (error) {
-      return res.status(400).send(error);
+      return res.status(400).send({ status: 400, error });
     }
   }
 
@@ -27,51 +29,40 @@ export default class OrderController {
    * @returns {object} parcelOrderController object
    */
   static async createParcelOrder(req, res) {
-    const {
-      id,
-      receiverName,
-      receiverEmail,
-      itemName,
-      itemWeight,
-      pickUpAddress,
-      destinationAddress,
-      status,
-      isDestinationChangedByAdmin,
-    } = req.body;
-    const price = itemWeight * 50;
-
     const text = `INSERT INTO
-    parcelorders(id,
-       item_name,
-       destination_address,
-       pickup_address,
-       created_date,
-       receiver_name,
-       receiver_email,
-       item_weight,
-       status,
-       isDestinationChangedByAdmin)
-      VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9 ,$10)
-      returning *`;
+     parcelorders( id,
+      sender_id,
+      item_name,
+      destination_address, 
+      pickup_address,
+      currentLocation, 
+      created_date, 
+      receiver_name, 
+      receiver_email, 
+      item_weight, 
+      status) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9 , $10 , $11 ) returning *`;
 
     const values = [
       uuidv4(),
-      itemName,
-      destinationAddress,
-      pickUpAddress,
+      req.user.userId,
+      req.body.itemName,
+      req.body.destinationAddress,
+      req.body.pickUpAddress,
+      req.body.pickUpAddress,
       moment(new Date()),
-      receiverName,
-      receiverEmail,
-      itemWeight,
-      'In Transit',
-      false,
+      req.body.receiverName,
+      req.body.receiverEmail,
+      req.body.itemWeight,
+      'Placed',
     ];
     try {
       const { rows } = await db(text, values);
       return res.status(201).send({
-        success: true,
-        message: 'Order created successfully.',
-        order: rows[0],
+        status: 201,
+        data: [{
+          message: 'order created',
+          order: rows[0],
+        }],
       });
     } catch (error) {
       return res.status(400).send(error);
@@ -87,13 +78,18 @@ export default class OrderController {
   static async getParcelOrderById(req, res) {
     const { parcel_id } = req.params;
     const text = 'SELECT * FROM parcelorders WHERE id = $1';
+
     try {
       const { rows } = await db(text, [parcel_id]);
-      res.status(200).send({
-        success: true,
-        message: `Order '${parcel_id}' retrieved.`,
-        orders: rows[0],
-      });
+      if (req.user.userId !== rows[0].sender_id) {
+        res.status(403).send({ message: 'Only Users Who created the resource Can Access' });
+      } else {
+        res.status(200).send({
+          success: true,
+          message: `Order '${parcel_id}' retrieved.`,
+          orders: rows[0],
+        });
+      }
     } catch (error) {
       return res.status(400).send({
         success: false,
@@ -114,19 +110,28 @@ export default class OrderController {
     const text = 'UPDATE parcelorders SET status=\'cancelled\' WHERE id = $1 RETURNING *';
     try {
       const { rows: result } = await db(text1, [parcel_id]);
-      if (result[0].status !== 'In Transit') {
+      if (req.user.userId !== result[0].sender_id) {
+        return res.status(403).json({
+          status: 403,
+          message: "Access denied, you don't have the required credentials to access this route",
+        });
+      }
+      if (result[0].status === 'In Transit' || result[0].status === 'Placed') {
+        const { rows } = await db(text, [parcel_id]);
+        res.status(200).send({
+          success: true,
+          orders: rows[0],
+        });
+      } else {
         return res.status(401).send({
+          status: 401,
           success: false,
           message: 'You Cannot Change Status',
         });
       }
-      const { rows } = await db(text, [parcel_id]);
-      res.status(200).send({
-        success: true,
-        orders: rows[0],
-      });
     } catch (error) {
       return res.status(400).send({
+        status: 400,
         success: false,
         message: 'Parcel Order not Found',
       });
