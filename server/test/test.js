@@ -23,17 +23,17 @@ describe('SendIT', () => {
     });
   });
 
-  describe('GET /parcels', () => {
-    it('should return all parcel order records', (done) => {
-      chai.request(server)
-        .get('/api/v1/parcels')
-        .end((err, res) => {
-          expect(res.status).to.equal(200);
-          expect(res.body).to.not.be.empty;
-          done(err);
-        });
-    });
-  });
+  // describe('GET /parcels', () => {
+  //   it('should return all parcel order records', (done) => {
+  //     chai.request(server)
+  //       .get('/api/v1/parcels')
+  //       .end((err, res) => {
+  //         expect(res.status).to.equal(200);
+  //         expect(res.body).to.not.be.empty;
+  //         done(err);
+  //       });
+  //   });
+  // });
 });
 // describe('GET /users/:userId/parcels', () => {
 //   it('should return all parcel order records created by a specific user', (done) => {
