@@ -46,8 +46,8 @@ const userAuthHelper = {
   },
   isWhiteSpace(email, password, confirmPassword) {
     if (email.includes(' ')) return false;
-    if (password.includes(' ')) return false;
-    if (confirmPassword.includes(' ')) return false;
+    if (typeof password === 'string' && password.includes(' ')) return false;
+    if (typeof confirmPassword === 'string' && confirmPassword.includes(' ')) return false;
     return true;
   },
 };

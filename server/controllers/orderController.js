@@ -225,4 +225,43 @@ export default class OrderController {
 
     }
   }
+
+  static async changeCurrentLocation(req, res) {
+    const { currentLocation } = req.body;
+    const { parcel_id } = req.params;
+
+    const text = 'UPDATE parcelorders SET currentLocation=$1 WHERE id=$2 RETURNING *';
+
+    try {
+      const { rows } = await db('SELECT * FROM parcelorders WHERE id = $1', [parcel_id]);
+      
+     if (!rows[0] || rows[0].status === 'cancelled' || rows[0].status === 'Delivered') {
+        return res.status(400).json({ status: 400, error: 'Parcel is either cancelled or has been delivered' });
+      }
+
+
+      if (rows[0].status === 'Placed') {
+        const { rows } = await db(text, [currentLocation, parcel_id]);
+        res.status(200).send({
+          status: 200,
+          success: true,
+          orders: rows[0],
+        });
+      }
+      if (rows[0].status === 'In Transit') {
+        const { rows } = await db(text, [currentLocation, parcel_id]);
+        res.status(200).send({
+          status: 200,
+          success: true,
+          orders: rows[0],
+        });
+      }
+  
+    } catch (error) {
+      return res.status(400).send({
+        success: false,
+        message: 'Parcel Order not Found',
+      });
+    }
+  }
 }

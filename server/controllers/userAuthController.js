@@ -27,7 +27,7 @@ class userAuthControllerClass {
       return res.status(400).send({ status: 404, error: 'Please enter a valid email address' });
     }
     if (!userAuthHelper.ispasswordValid(req.body.password)) {
-      return res.status(400).send({ status: 404, error: 'Password Must Be at least Five Characters' });
+      return res.status(400).send({ status: 404, error: 'Password Must Be at least Five Characters And Must Be A string' });
     }
     if (!userAuthHelper.doesPasswordMatch(req.body.password, req.body.confirmPassword)) {
       return res.status(400).send({ status: 404, error: 'Passwords Do not match' });
