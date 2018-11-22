@@ -1,10 +1,12 @@
+/* eslint-disable camelcase */
+/* eslint-disable require-jsdoc */
 // /* eslint-disable camelcase */
 import moment from 'moment';
 import uuidv4 from 'uuid/v4';
 import db from '../db/dbconnect';
-import createFunctionValidators from '../helpers/createFunctionValidators'
+import createFunctionValidators from '../helpers/createFunctionValidators';
 
-const { validateAddress } =  createFunctionValidators;
+const { validateAddress } = createFunctionValidators;
 
 export default class OrderController {
   /**
@@ -126,10 +128,10 @@ export default class OrderController {
           orders: rows[0],
         });
       } else {
-        return res.status(401).send({
-          status: 401,
+        return res.status(200).send({
+          status: 200,
           success: false,
-          message: 'You Cannot Change Status',
+          message: 'You can no longer cancel this parcel Order',
         });
       }
     } catch (error) {
@@ -141,7 +143,7 @@ export default class OrderController {
     }
   }
 
-  
+
   /**
    * change   A parcel Order Destination
    * @param {object} req
@@ -151,34 +153,37 @@ export default class OrderController {
   static async changeParcelDestination(req, res) {
     const { destinationAddress } = req.body;
     const { parcel_id } = req.params;
-    const text = 'UPDATE parcelorders SET destination_address = $1 WHERE parcelId = $2 RETURNING *';
+
+    const text = 'UPDATE parcelorders SET destination_address=$1 WHERE id=$2 RETURNING *';
 
     try {
       const { rows } = await db('SELECT * FROM parcelorders WHERE id = $1', [parcel_id]);
       if (req.user.userId !== rows[0].sender_id) {
         res.status(403).send({ message: 'Only Users Who created the resource Can Access' });
       }
-     if(!validateAddress(destination_address)) {
-      return res.status(400).json({
-        error: 'Address cannot be empty and must be at least five characters',
-      });
-     }
-
-      if (result[0].status === 'In Transit' || result[0].status === 'Placed') {
-         const { rows } = await db(text, [parcel_id , destinationAddress]);
+      if (rows[0].status === 'Placed') {
+        const { rows } = await db(text, [destinationAddress, parcel_id]);
         res.status(200).send({
-          status : 200,
+          status: 200,
           success: true,
           orders: rows[0],
         });
-      } else {
+      }
+      if (rows[0].status === 'In Transit') {
+        const { rows } = await db(text, [destinationAddress, parcel_id]);
+        res.status(200).send({
+          status: 200,
+          success: true,
+          orders: rows[0],
+        });
+      }
+      if (rows[0].status === 'cancelled' || rows[0].status === 'Delivered') {
         return res.status(401).send({
           status: 401,
           success: false,
           message: 'You Cannot Change Destination',
         });
       }
-
     } catch (error) {
       return res.status(400).send({
         success: false,
@@ -187,4 +192,37 @@ export default class OrderController {
     }
   }
 
+  static async changeParcelStatus(req, res) {
+    const { status } = req.body;
+    const { parcel_id } = req.params;
+    const text = 'UPDATE parcelorders SET status=$1  WHERE id=$2 RETURNING *';
+
+    // eslint-disable-next-line quotes
+    if (status === "In Transit" || status === "Delivered" || status === "Placed") {
+      
+      try {
+        const { rows } = await db('SELECT * FROM parcelorders WHERE id = $1', [parcel_id]);
+  
+        if (!rows[0] || rows[0].status === 'cancelled' || rows[0].status === 'Delivered') {
+          return res.status(409).json({ status: 409, error: 'invalid request' });
+        }
+        
+        const result = await db(text, [status, parcel_id]);
+        
+        res.status(200).json(result.rows[0]);
+      } catch (error) {
+        return res.status(400).send({
+          success: false,
+          message: 'Parcel Order not Found',
+        });
+      }
+    } else {
+      return res.status(400).send({
+        error: 400,
+        success: false,
+        message: 'The Format for status are "In Transit", "Delivered", "Placed" ',
+      });
+
+    }
+  }
 }

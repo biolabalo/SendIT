@@ -3,9 +3,10 @@ import validator from '../helpers/createOrderValidator';
 import OrderController from '../controllers/orderController';
 import verifyTokenObj from '../helpers/verifyTokenMiddleware';
 import verifyIsAdminClass from '../helpers/verifyIsAdmin';
+import verifyAddresssclass from '../helpers/validateAdress';
 
 const router = express.Router();
-
+const {verifyAddresss} = verifyAddresssclass;
 const { validateCreateParcelData } = validator;
 const { verifyToken } = verifyTokenObj;
 const { verifyIsAdmin } = verifyIsAdminClass;
@@ -15,6 +16,7 @@ const {
   createParcelOrder,
   getAllParcelOrders,
   changeParcelDestination,
+  changeParcelStatus,
 } = OrderController;
 
 router.get('/', verifyToken, verifyIsAdmin, getAllParcelOrders);
@@ -33,6 +35,8 @@ router.post('/',
   createParcelOrder);
 
   // http://localhost:5000/api/v1/parcels/1/cancel
-router.put('/:parcel_id/destination', verifyToken, changeParcelDestination);
+router.put('/:parcel_id/destination', verifyAddresss, verifyToken, changeParcelDestination);
+
+ router.put('/:parcel_id/status', verifyToken, verifyIsAdmin, changeParcelStatus);
 
 export default router;
