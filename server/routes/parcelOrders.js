@@ -6,7 +6,7 @@ import verifyIsAdminClass from '../helpers/verifyIsAdmin';
 import verifyAddresssclass from '../helpers/validateAdress';
 
 const router = express.Router();
-const {verifyAddresss} = verifyAddresssclass;
+const { verifyAddresss } = verifyAddresssclass;
 const { validateCreateParcelData } = validator;
 const { verifyToken } = verifyTokenObj;
 const { verifyIsAdmin } = verifyIsAdminClass;
@@ -17,6 +17,7 @@ const {
   getAllParcelOrders,
   changeParcelDestination,
   changeParcelStatus,
+  changeCurrentLocation,
 } = OrderController;
 
 router.get('/', verifyToken, verifyIsAdmin, getAllParcelOrders);
@@ -38,5 +39,7 @@ router.post('/',
 router.put('/:parcel_id/destination', verifyAddresss, verifyToken, changeParcelDestination);
 
  router.put('/:parcel_id/status', verifyToken, verifyIsAdmin, changeParcelStatus);
+
+ router.put('/:parcel_id/presentLocation', verifyAddresss, verifyToken, verifyIsAdmin, changeCurrentLocation);
 
 export default router;
