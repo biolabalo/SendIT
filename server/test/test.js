@@ -204,6 +204,100 @@ describe('post /login', () => {
       });
   });
 });
+describe('post Validate Address /login', () => {
+  it('should return 400 if the address are invalid', (done) => {
+    chai.request(server)
+      .post('/api/v1/a34e2e87-eeaa-4721-80e9-724309e6bbea/destination')
+          .send({
+        destinationAddress:5,
+        })
+      .end((err, res) => {
+        expect(err).to.be.null;
+        expect(res).to.have.headers;
+        expect(res).to.have.status(404);
+        expect(res).to.not.redirect;
+        expect(res.body).to.be.an('object');
+        done();
+      });
+  });
+});
+describe('post Validate Address /login', () => {
+  it('should return 400 if the address are invalid', (done) => {
+    chai.request(server)
+      .patch('/api/v1/a34e2e87-eeaa-4721-80e9-724309e6bbea/destination')
+          .send({
+            currentLocation:5,
+        })
+      .end((err, res) => {
+        expect(err).to.be.null;
+        expect(res).to.have.headers;
+        expect(res).to.have.status(404);
+        expect(res).to.not.redirect;
+        expect(res.body).to.be.an('object');
+        done();
+      });
+  });
+});
+describe('Fetch Parcel by Id',() => {
+  it('should return 401 because there is no token', (done) => {
+    chai.request(server)
+      .get('/api/v1/parcels/a34e2e87-eeaa-4721-80e9-724309e6bbea')
+      .end((err, res) => {
+        expect(err).to.be.null;
+        expect(res).to.have.headers;
+        expect(res.body).to.have.property('message').eql('Token is not provided');
+        expect(res).to.have.status(401);
+        expect(res).to.not.redirect;
+        expect(res.body).to.be.an('object');
+        done();
+      });
+  });
+});
+describe('Fetch wrong url',() => {
+  it('should return 404 because the url is not valid', (done) => {
+    chai.request(server)
+      .get('/api/v1/a34e2e87-eeaa-4721-80e9-724309e6bbea')
+      .end((err, res) => {
+        expect(err).to.be.null;
+        expect(res).to.have.headers;
+        expect(res.body).to.have.property('message').eql('Page Not Found. Please go to /api/v1 to use our api');
+        expect(res).to.have.status(404);
+        expect(res).to.not.redirect;
+        expect(res.body).to.be.an('object');
+        done();
+      });
+  });
+});
+describe('Fetch All Parcel with out token',() => {
+  it('should return 401 due to absence of token', (done) => {
+    chai.request(server)
+      .get('/api/v1/parcels')
+      .end((err, res) => {
+        expect(err).to.be.null;
+        expect(res).to.have.headers;
+        expect(res.body).to.have.property('message').eql('Token is not provided');
+        expect(res).to.have.status(401);
+        expect(res).to.not.redirect;
+        expect(res.body).to.be.an('object');
+        done();
+      });
+  });
+});
+describe('Fetch All Parcel created By A user',() => {
+  it('should return 401 due to absence of token', (done) => {
+    chai.request(server)
+      .get('/api/v1/users/3232/parcels')
+      .end((err, res) => {
+        expect(err).to.be.null;
+        expect(res).to.have.headers;
+        expect(res.body).to.have.property('message').eql('Token is not provided');
+        expect(res).to.have.status(401);
+        expect(res).to.not.redirect;
+        expect(res.body).to.be.an('object');
+        done();
+      });
+  });
+});
 //   it('should return a parcel  record if id is valid', (done) => {
 //     chai.request(server)
 //       .get('/api/v1/parcels/1')
