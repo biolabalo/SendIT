@@ -1,6 +1,5 @@
 import moment from 'moment';
 import uuidv4 from 'uuid/v4';
-import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import db from '../db/dbconnect';
 import userAuthHelper from '../helpers/userAuth';
@@ -15,22 +14,22 @@ class userAuthControllerClass {
   static async createUser(req, res) {
 
     if (!req.body.email || !req.body.password || !req.body.confirmPassword || !req.body.fullname) {
-      return res.status(400).send({ status: 404, error: 'Some values are missing' });
+      return res.status(400).send({ status: 400, error: 'Some values are missing' });
     }
     if (!userAuthHelper.isWhiteSpace(req.body.email, req.body.password, req.body.confirmPassword)) {
-      return res.status(400).send({ status: 404, error: 'White Space are not allowed in input fields' });
+      return res.status(400).send({ status: 400, error: 'White Space are not allowed in input fields' });
     }
     if (typeof req.body.fullname !== 'string') {
-      return res.status(400).send({ status: 404, error: 'Full Name Is Invalid' });
+      return res.status(400).send({ status: 400, error: 'Full Name Is Invalid' });
     }
     if (!userAuthHelper.isValidEmail(req.body.email)) {
-      return res.status(400).send({ status: 404, error: 'Please enter a valid email address' });
+      return res.status(400).send({ status: 400, error: 'Please enter a valid email address' });
     }
     if (!userAuthHelper.ispasswordValid(req.body.password)) {
-      return res.status(400).send({ status: 404, error: 'Password Must Be at least Five Characters And Must Be A string' });
+      return res.status(400).send({ status: 400, error: 'Password Must Be at least Five Characters And Must Be A string' });
     }
     if (!userAuthHelper.doesPasswordMatch(req.body.password, req.body.confirmPassword)) {
-      return res.status(400).send({ status: 404, error: 'Passwords Do not match' });
+      return res.status(400).send({ status: 400, error: 'Passwords Do not match' });
     }
 
     const {
@@ -76,22 +75,22 @@ class userAuthControllerClass {
 
   static async login(req, res) {
     if (!req.body.email || !req.body.password) {
-      return res.status(400).send({ status: 400, message: 'Some values are missing' });
+      return res.status(401).send({ status: 401, message: 'Some values are missing' });
     }
     if (!userAuthHelper.isValidEmail(req.body.email)) {
-      return res.status(400).send({ status: 400, message: 'Please enter a valid email address' });
+      return res.status(401).send({ status: 401, message: 'Please enter a valid email address' });
     }
     if (!userAuthHelper.ispasswordValid(req.body.password)) {
-      return res.status(400).send({ status: 404, error: 'Password Must Be at least Five Characters' });
+      return res.status(401).send({ status: 401, error: 'Password Must Be at least Five Characters' });
     }
     const text = 'SELECT * FROM users WHERE email = $1';
     try {
       const { rows } = await db(text, [req.body.email]);
       if (!rows[0]) {
-        return res.status(400).send({ status: 400, message: 'Invalid Email / Password' });
+        return res.status(401).send({ status: 401, message: 'Invalid Email / Password' });
       }
       if (!userAuthHelper.comparePassword(rows[0].password, req.body.password)) {
-        return res.status(400).send({ status: 400, message: 'The credentials you provided Are incorrect' });
+        return res.status(401).send({ status: 401, message: 'The credentials you provided Are incorrect' });
       }
       const token = jwt.sign({ userId: rows[0].id, isAdmin: rows[0].isadmin },
         process.env.jwt_privateKey);
