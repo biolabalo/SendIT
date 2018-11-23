@@ -12,7 +12,7 @@ const verifyTokenObj = {
   async verifyToken(req, res, next) {
     const token = req.headers['x-access-token'];
     if (!token) {
-      return res.status(400).send({ message: 'Token is not provided' });
+      return res.status(401).send({ message: 'Token is not provided' });
     }
     try {
       const decoded = await jwt.verify(token, process.env.jwt_privateKey);
@@ -20,7 +20,7 @@ const verifyTokenObj = {
       const text = 'SELECT * FROM users WHERE id = $1';
       const { rows } = await db(text, [decoded.userId]);
       if (!rows[0]) {
-        return res.status(400).send({ status: 400, message: 'The token you provided is invalid' });
+        return res.status(401).send({ status: 401, message: 'The token you provided is invalid' });
       }
       next();
     } catch (error) {

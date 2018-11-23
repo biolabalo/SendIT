@@ -4,7 +4,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const string = process.env.NODE_ENV === 'test'
-  ? ''
+  ? 'process.env.DATABASE_TEST'
   : process.env.DATABASE_URL;
 
 const pool = new Pool({
