@@ -34,6 +34,14 @@ export default class OrderController {
    * @returns {object} parcelOrderController object
    */
   static async createParcelOrder(req, res) {
+console.log(req.user)
+    const { isAdmin } = req.user;
+    if (isAdmin) {
+      return res.status(403).json({
+        status: 403,
+        message: "Access denied, you don't have the required credentials to access this route",
+      });
+    }
     const text = `INSERT INTO
      parcelorders( id,
       sender_id,
@@ -60,6 +68,7 @@ export default class OrderController {
       req.body.itemWeight,
       'Placed',
     ];
+
     try {
       const { rows } = await db(text, values);
       return res.status(201).send({
@@ -192,6 +201,9 @@ export default class OrderController {
     }
   }
 
+
+
+
   static async changeParcelStatus(req, res) {
     const { status } = req.body;
     const { parcel_id } = req.params;
@@ -201,7 +213,7 @@ export default class OrderController {
     if (status === "In Transit" || status === "Delivered" || status === "Placed") {
       
       try {
-        const { rows } = await db('SELECT * FROM parcelorders WHERE id = $1', [parcel_id]);
+        let { rows } = await db('SELECT * FROM parcelorders WHERE id = $1', [parcel_id]);
   
         if (!rows[0] || rows[0].status === 'cancelled' || rows[0].status === 'Delivered') {
           return res.status(409).json({ status: 409, error: 'invalid request' });
