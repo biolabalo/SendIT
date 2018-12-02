@@ -1,5 +1,4 @@
 const fullname = document.getElementById('fullname');
-const Username = document.getElementById('Username');
 const signupEmail  = document.querySelector('.Email');
 const signupPassword = document.getElementById('signupPassword');
 const confirmPassword = document.getElementById('confirmPassword');
@@ -21,23 +20,6 @@ const validatefullname = () => {
     name.nextElementSibling.nextElementSibling.classList.add('invalid-feedback'),
     name.nextElementSibling.nextElementSibling.classList.remove('invalid-feedback-show');  
        
-  };
-    
-};
-
-const validateusername = () => {
-  const Username = document.getElementById('Username');
-  const re = /^[a-zA-Z0-9]{1,20}$/;
-
-  if(!re.test(Username.value)){
-    Username.classList.add('is-invalid'),
-    Username.nextElementSibling.nextElementSibling.classList.remove('invalid-feedback'),
-    Username.nextElementSibling.nextElementSibling.classList.add('invalid-feedback-show');
-  } else {
-    Username.classList.remove('is-invalid'),
-    Username.nextElementSibling.nextElementSibling.classList.add('invalid-feedback'),
-    Username.nextElementSibling.nextElementSibling.classList.remove('invalid-feedback-show');  
-      
   };
     
 };
@@ -105,21 +87,20 @@ const  signupuser = (e) => {
  if( 
      Array.from(fullname.classList).includes('is-invalid')      
      || Array.from(signupPassword.classList).includes('is-invalid') 
-     || Array.from(signupEmail.classList).includes('is-invalid')
-     || Array.from(Username.classList).includes('is-invalid')  
+     || Array.from(signupEmail.classList).includes('is-invalid') 
      || Array.from(confirmPassword.classList).includes('is-invalid')
     ) {
     swal({ icon: 'warning'  , title: 'Inputs Must be Valid Before Submission' }); 
  }else{
-   
+  
     const data = {
     fullname: fullname.value,
-    username: Username.value,
     password: signupPassword.value,
     email: signupEmail.value,
   }; 
-     
-     
+  console.log(data)  
+  Auth.userSignUp(data)   
+   
  };
 
 
@@ -128,7 +109,6 @@ const  signupuser = (e) => {
 
 
 fullname.addEventListener('blur', validatefullname);
-Username.addEventListener('blur',  validateusername);
 signupEmail.addEventListener('blur', validatemail);
 signupPassword.addEventListener('blur', validatepassword );
 confirmPassword.addEventListener('blur', passwordmatch);

@@ -2,16 +2,18 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
 import 'babel-polyfill';
+import cors from 'cors';
 import parcelOrdersRoutes from './routes/parcelOrders';
 import userAuthRoutes from './routes/userAuth';
 import userRoutes from './routes/user';
+
 
 dotenv.config();
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-
+app.use(cors());
 app.get('/api/v1', (req, res) => res.status(200).send({
   status: 'connection successful',
   message: 'Welcome to SendIT!',
