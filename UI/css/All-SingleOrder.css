@@ -58,11 +58,22 @@ button:focus { outline:0 !important; }
     text-decoration: none !important;
     color:white ! important;
 }
-.Arrived{
-color: green
+.Delivered{
+color: green;
+font-weight: 900;
+font-style: italic
 }
-.Pending{
- color:tomato
+.cancelled{
+ color:tomato;
+ 
+}
+
+.Placed{
+color:limegreen
+}
+
+.InTransit{
+    color:peru
 }
 
 .cancel-change-destination button{

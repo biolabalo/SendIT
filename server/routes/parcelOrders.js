@@ -1,4 +1,5 @@
 import express from 'express';
+import cors from 'cors';
 import validator from '../helpers/createOrderValidator';
 import OrderController from '../controllers/orderController';
 import verifyTokenObj from '../helpers/verifyTokenMiddleware';
@@ -38,7 +39,7 @@ router.post('/',
   // http://localhost:5000/api/v1/parcels/1/cancel
 router.put('/:parcel_id/destination', verifyAddresss, verifyToken, changeParcelDestination);
 
- router.put('/:parcel_id/status', verifyToken, verifyIsAdmin, changeParcelStatus);
+ router.put('/:parcel_id/status', cors() , verifyToken, verifyIsAdmin, changeParcelStatus);
 
  router.put('/:parcel_id/presentLocation', verifyAddresss, verifyToken, verifyIsAdmin, changeCurrentLocation);
 

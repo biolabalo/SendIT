@@ -55,7 +55,7 @@ const signinuser = (e) => {
     password: signupPassword.value,
     email: signupEmail.value,
   }; 
-       
+  Auth.Login(data)       
  };
 
 };
