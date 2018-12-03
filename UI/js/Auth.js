@@ -1,30 +1,99 @@
+/* eslint-disable no-undef */
 /* eslint-disable require-jsdoc */
 class Auth {
 
   static async userSignUp(data) {
-    console.log(data);
-    const response = await fetch('https://sendit-biola.herokuapp.com/api/v1/auth/signup', {
-      method: 'POST',
-      headers: {
-        'Content-type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    });
+    try {
+      const response = await fetch('https://sendit-biola.herokuapp.com/api/v1/auth/signup', {
+        method: 'POST',
+        headers: {
+          'Content-type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
 
-    const result = await response.json();
-    console.log(result);
+      const result = await response.json();
+
+      if (result.message === 'User with that EMAIL already exist') {
+
+      }
+      if (result.status === 201) {
+        window.location = './signIn.html';
+      } else {
+        swal({ icon: 'warning', title: 'Sign Up Failed Try Again' });
+      }
+    } catch (e) {
+      swal({ icon: 'warning', title: 'Sign Up Failed Try Again' });
+    }
+
   }
 
-  static getToken() {
-    return window.localStorage.getItem('token');
+  static async Login(data) {
+    try {
+      const response = await fetch('https://sendit-biola.herokuapp.com/api/v1/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json();
+
+      if (result.status === 401) {
+        swal({ icon: 'warning', title: result.message });
+      }
+
+      if (result.status === 200) {
+
+        if (result.data[0].user.isadmin === false) {
+          localStorage.clear();
+          localStorage.setItem('authToken', result.data[0].token);
+          localStorage.setItem('userId', result.data[0].user.id);
+          window.location = 'AllOrders.html';
+        } else if (result.data[0].user.isadmin === true) {
+          window.location = 'AdminLogin.html';
+        }
+
+      }
+    } catch (e) {
+      swal({ icon: 'warning', title: 'OOps ! Try Again' });
+    }
+
+
   }
 
-  static saveToken(token) {
-    window.localStorage.setItem('token', token);
-  }
+  static async AdminLogin(data) {
+    try {
+      const response = await fetch('https://sendit-biola.herokuapp.com/api/v1/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
 
-  static removeToken() {
-    return window.localStorage.removeItem('token');
+      const result = await response.json();
+
+      if (result.status === 401) {
+        swal({ icon: 'warning', title: result.message });
+      }
+
+      if (result.status === 200) {
+        if (result.data[0].user.isadmin === false) {
+          window.location = 'Signin.html';
+        } else if (result.data[0].user.isadmin === true) {
+          localStorage.clear();
+          localStorage.setItem('AdminauthToken', result.data[0].token);
+          localStorage.setItem('AdminId', result.data[0].user.id);
+          window.location = 'AdminChange.html';
+        }
+
+      }
+    } catch (e) {
+      swal({ icon: 'warning', title: 'OOps ! Try Again' });
+    }
+
   }
 
 }

@@ -5,22 +5,30 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>SendIT | All Orders </title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="../css/header.css" />
-    <link rel="stylesheet" type="text/css" href="../css/All-SingleOrder.css" />
-    <link href="https://fonts.googleapis.com/css?family=Montaga" rel="stylesheet"> 
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+     <link rel="stylesheet" type="text/css" href="../css/header.css" />
+    <link rel="stylesheet" type="text/css" href="../css/All-SingleOrder.css" /> 
+    <link rel="stylesheet" type="text/css" href="../css/Spinner.css" /> 
+   <link href="https://fonts.googleapis.com/css?family=Montaga" rel="stylesheet"> 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
+    <style>
+  body{
+        background-color: #efefef;
+      }
+      .all-orders-container{
+           width: auto;
+           padding: 10px;
+          }
+    </style>
 </head>
 <body>
-      
-        <header>
+   
+  <header>
             <div class="wrapper">
                 <h1 class="logo">Send It</h1>
                 <nav>
                     <h2>Main Navigation</h2>
                     <div id="burger-nav"></div>
                     <ul>
-                        <li><a href="" class="current">Home</a></li>
                         <li><a href="createOrder.html">Create Parcel Order</a></li>
                         <li><a href="UserProfile.html">User Profile</a></li>
                         <li><a href="../index.html">Log Out</a></li>
@@ -28,71 +36,23 @@
                     </ul>
                 </nav>
             </div>
-        </header>
+        </header> 
+
+
+
   <div class ="all-orders-container">
       <blockquote>
                <H1>ALL ORDERS</H1>
       </blockquote>
-       
-
-<table>
-  <tr>
-    <th>Item Name</th>
-    <th>Pick Up Address</th>
-    <th>Destination</th>
-    <th>Status</th>
-  </tr>
-  <tr>
-    <td> Laptops </td>
-    <td>Lekki Phase 1</td>
-    <td>Heaven</td>
-    <td> <span class ="Pending">Pending</span> </td>
-    <td> <a class="view-btn" href ="singleOrder.html">View </a></td>
-   
-  </tr>
-  <tr>
-    <td>Bags</td>
-    <td>Ikeja</td>
-    <td>Heaven</td>
-    <td> <span class ="Arrived">Arrived</span> </td>
-    <td> <a class="view-btn" href ="singleOrder.html">View </a></td>
+      <div class ="intrestedDiv">
+          <div class="spinner">
+              <div class="dot1"></div>
+              <div class="dot2"></div>
+          </div>
+      </div>
     
-  </tr>
-  <tr>
-    <td>Joe</td>
-    <td>Swanson</td>
-    <td>Heaven</td>
-    <td> <span class ="Arrived">Arrived</span> </td>
-    <td> <a class="view-btn" href ="singleOrder.html">View </a></td>
    
-     
-  </tr>
-  <tr>
-    <td>Cleveland</td>
-    <td>Brown</td>
-    <td>Heaven</td>
-    <td> <span class ="Arrived">Arrived</span> </td>
-    <td> <a class="view-btn" href ="singleOrder.html">View </a></td>
-    
-  </tr>
-    <tr>
-    <td>Cleveland</td>
-    <td>Brown</td>
-    <td>Heaven</td>
-    <td> <span class ="Arrived">Arrived</span> </td>
-    <td> <a class="view-btn" href ="singleOrder.html">View </a></td>
-    
-  </tr>
-    <tr>
-    <td>Cleveland</td>
-    <td>Brown</td>
-    <td>$250</td>
-     <td> <span class ="Arrived">Arrived</span> </td>
-    <td> <a class="view-btn" href ="singleOrder.html">View </a></td>
-     
-  </tr>
-</table>
-   
-    </div>         
-       
+    </div>          
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>     
+    <script src ="../js/FetchAllOrdersByUser.js"></script> 
 </body>

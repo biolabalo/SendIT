@@ -92,13 +92,13 @@ const  signupuser = (e) => {
     ) {
     swal({ icon: 'warning'  , title: 'Inputs Must be Valid Before Submission' }); 
  }else{
-  
+  e.preventDefault();
     const data = {
     fullname: fullname.value,
     password: signupPassword.value,
     email: signupEmail.value,
+    confirmPassword: confirmPassword.value
   }; 
-  console.log(data)  
   Auth.userSignUp(data)   
    
  };
