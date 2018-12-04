@@ -33,21 +33,22 @@ const changeStatus = async (button) => {
 
     const data = status.includes('InTransit') ? 'In Transit' : status;
 
-    console.log(data);
-console.log(Token);
+   
     const url = `https://sendit-biola.herokuapp.com/api/v1/parcels/${id}/status`;
+    
     try {
 
       const response = await fetch(url, {
         method: 'PUT',
+        body:JSON.stringify(data),
         headers: {
-          'x-access-token': Token,
+          Accept: 'application/json, text/plain, */*',
+         'x-access-token': Token,
           'Content-type': 'application/json',
-        },
-        body: JSON.stringify(data),
+        }
       });
-
-      const result = await response.json();
+     
+     // const result = a response.json();
 
       if (result) {
         // appendDataToDom(result.data);
@@ -55,6 +56,7 @@ console.log(Token);
       }
 
     } catch (e) {
+      console.log(e)
       swal({ title: 'Error in Updating  Data' });
       // window.location = 'signIn.html';
     }
