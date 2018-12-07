@@ -7,9 +7,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="../css/header.css" />
     <link rel="stylesheet" type="text/css" href="../css/All-SingleOrder.css" />
+    <link  rel="stylesheet" type="text/css"  href="../css/animate.css"/>
+    <link  rel="stylesheet" type="text/css"  href="../css/Spinner.css"/>
     <link href="https://fonts.googleapis.com/css?family=Montaga" rel="stylesheet"> 
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
+    <style>
+      body{
+            background-color: #efefef;
+          }
+          .all-orders-container{
+               width: auto;
+               padding: 10px;
+              }
+        </style> 
+  
 </head>
 <body>
       
@@ -32,50 +42,12 @@
       <blockquote>
                <H1>SINGLE ORDER</H1>
       </blockquote>
-       
+      <div class="spinner2">
+        <div class="cube1"></div>
+        <div class="cube2"></div>
+      </div>    
+<!-- 
 
-
-<table class ="single-order">
-
-  <tr>
-    <td> OrderId </td>
-    <td> asaew11 </td>
-  
-  </tr>
-  <tr>
-    <td>Item Name</td>
-    <td>Bags</td>
-  
-  </tr>
-  <tr>
-    <td>Status</td>
-    <td> <span class ="Pending">Pending</span></td>
- 
-     
-  </tr>
-  <tr>
-    <td>Destination </td>
-    <td>Ikoyi</td>
- 
-  </tr>
-    <tr>
-    <td>Pickup</td>
-    <td> Oshodi </td>
-  
-  </tr>
-    <tr>
-    <td>Price</td>
-    <td> #300</td>
-   
-  </tr>
-</table>
-  <br>
-  
-  <div class="cancel-change-destination">
-     <button id= "cancel_Order">Cancel Order</button> 
-     <button id="change_Direction"> Change Destination</button> 
-  </div>
-  
 <!--  modal-->
 <div id="myModal" class="modal">
  <div class="modal-content">
@@ -104,7 +76,7 @@
    
     </div>    
  
- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.28.11/dist/sweetalert2.all.min.js"></script>
- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD9ycobB5RiavbXpJBo0Muz2komaqqvGv0&libraries=places"></script>   
- <script src="../js/All-SingleOrder.js"></script>     
+ <script src="../js/sweetAlert.js"></script>
+ <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAddwFzEu83xzv_3kQjwLOrK3d35bmiOKg&amp;libraries=places"></script>
+ <script src="../js/FetchSingleOrder.js"></script>     
 </body>
