@@ -92,6 +92,8 @@ const  signupuser = (e) => {
     ) {
     swal({ icon: 'warning'  , title: 'Inputs Must be Valid Before Submission' }); 
  }else{
+ 
+document.querySelector('.sub-btn').innerHTML = `<span>Submit <i class="fas fa-spinner fa-spin"></i></span>`  
   e.preventDefault();
     const data = {
     fullname: fullname.value,
