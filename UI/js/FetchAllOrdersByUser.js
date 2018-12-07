@@ -18,30 +18,35 @@ const fetch_User_Details = async () => {
 
     const result = await response.json();
 
-    if(result) {
-    appendDataToDom(result);
-      }
+    if (result) {
+      appendDataToDom(result);
+    }
 
   } catch (e) {
     swal({ icon: 'warning', title: e });
-     window.location = 'signIn.html';
+    window.location = 'signIn.html';
   }
 };
 
 window.onload = () => fetch_User_Details();
 
 
-/////////////////////////////////////////////////////////////////////////////////
+const fetchSingleOrderDetails = (id) => {
+  localStorage.setItem('singleParcelId' , id)
+  window.location = 'singleOrder.html';
+};
+
+// ///////////////////////////////////////////////////////////////////////////////
 
 const appendDataToDom = (result) => {
-   
+
   const IntrestedDiv = document.querySelector('.intrestedDiv');
 
   if (result.length > 0) {
     let neededData = '';
-    
+
     result.forEach((res) => {
-  neededData += `
+      neededData += `
   <tr>
   <td>${res.item_name}</td>
   <td>${res.pickup_address}</td>
@@ -71,6 +76,6 @@ const appendDataToDom = (result) => {
     return;
   }
 
-  IntrestedDiv.innerHTML = `<p> You Have Not Ordered For Any Parcel delivery.To create a parcel Click <b>Create Parcel Order </b> <p>`;
+  IntrestedDiv.innerHTML = '<p> You Have Not Ordered For Any Parcel delivery.To create a parcel Click <b>Create Parcel Order </b> <p>';
 
 };
