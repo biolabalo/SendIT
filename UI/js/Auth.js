@@ -3,6 +3,7 @@
 class Auth {
 
   static async userSignUp(data) {
+  localStorage.clear();
     try {
       const response = await fetch('https://sendit-biola.herokuapp.com/api/v1/auth/signup', {
         method: 'POST',
@@ -20,15 +21,20 @@ class Auth {
       if (result.status === 201) {
         window.location = './signIn.html';
       } else {
+     
         swal({ icon: 'warning', title: 'Sign Up Failed Try Again' });
+        document.querySelector('.sub-btn').innerHTML = `<span>Submit &#8594;</span>` 
       }
     } catch (e) {
+      
       swal({ icon: 'warning', title: 'Sign Up Failed Try Again' });
+      document.querySelector('.sub-btn').innerHTML =  `<span>Submit &#8594;</span>`; 
     }
 
   }
 
   static async Login(data) {
+    localStorage.clear();
     try {
       const response = await fetch('https://sendit-biola.herokuapp.com/api/v1/auth/login', {
         method: 'POST',
@@ -41,13 +47,14 @@ class Auth {
       const result = await response.json();
 
       if (result.status === 401) {
+        document.querySelector('.sub-btn').innerHTML =  `<span>Submit &#8594;</span>`; 
         swal({ icon: 'warning', title: result.message });
       }
 
       if (result.status === 200) {
 
         if (result.data[0].user.isadmin === false) {
-          localStorage.clear();
+          
           localStorage.setItem('authToken', result.data[0].token);
           localStorage.setItem('userId', result.data[0].user.id);
           window.location = 'AllOrders.html';
@@ -57,6 +64,7 @@ class Auth {
 
       }
     } catch (e) {
+      document.querySelector('.sub-btn').innerHTML = `<span>Submit &#8594;</span>` 
       swal({ icon: 'warning', title: 'OOps ! Try Again' });
     }
 

@@ -29,7 +29,7 @@ h1{
     text-align: center
 }
 
-input[type=text] {
+input[type=text] , input[type=number] , input[type=email] {
     width: 100%;
     margin: 8px 0;
     display: inline-block;

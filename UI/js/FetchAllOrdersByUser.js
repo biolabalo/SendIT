@@ -1,10 +1,9 @@
-
+const Token = localStorage.getItem('authToken');
+const userId = localStorage.getItem('userId');
+if (!Token || !userId) window.location = 'signIn.html';
 
 const fetch_User_Details = async () => {
 
-  const Token = localStorage.getItem('authToken');
-  const userId = localStorage.getItem('userId');
-  if (!Token || !userId) window.location = 'signIn.html';
   const url = `https://sendit-biola.herokuapp.com/api/v1/users/${userId}/parcels`;
 
   try {
@@ -50,14 +49,14 @@ const appendDataToDom = (result) => {
   <td class = ${res.status}>${res.status}</td>
   <td>${res.receiver_name}</td>
   
-  <td> <a class="view-btn" href ="singleOrder.html">View </a></td>
+  <td> <button class="view-btn" href ="singleOrder.html" onclick ="fetchSingleOrderDetails('${res.id}')">View </button></td>
   </tr>
   `;
 
     });
 
     const data_To_Be_Appended = `
-   <table>
+   <table class="animated zoomInDown">
    <tr>
      <th>Item Name</th>
      <th>Pick Up Address</th>
