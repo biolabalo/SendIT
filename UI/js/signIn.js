@@ -51,7 +51,7 @@ const signinuser = (e) => {
   ){
    swal({ icon: 'warning'  , title: 'Inputs Must be Valid Before Submission' }); 
    }else{
-    document.querySelector('.sub-btn').innerHTML = `<span>Submit <i class="fas fa-spinner fa-spin"></i></span>`
+    document.querySelector('.sub-btn').innerHTML = `<span>Submit <i class="fas fa-spinner fa-spin"></i></span>`;
     const data = {
     password: signupPassword.value,
     email: signupEmail.value,

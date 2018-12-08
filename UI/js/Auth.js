@@ -96,9 +96,10 @@ class Auth {
           localStorage.setItem('AdminId', result.data[0].user.id);
           window.location = 'AdminChange.html';
         }
-
+        throw 'Error';
       }
     } catch (e) {
+      document.querySelector('.sub-btn').innerHTML =  `<span>Submit &#8594;</span>`; 
       swal({ icon: 'warning', title: 'OOps ! Try Again' });
     }
 

@@ -36,13 +36,15 @@ window.onload = () => fetch_All_Parcels_For_Admin();
 // ///////////////////////////////////////////////////////////////////////////////
 
 const appendDataToDom = (result) => {
-  console.log(result)
+ 
   const IntrestedDiv = document.querySelector('.intrestedDiv');
 
   if (result.length > 0) {
     let neededData = '';
 
     result.forEach((res) => {
+      const changeStatusButton = (res.status === 'Placed' || res.status === 'In Transit') ? `<button class="Admin-change-status-btn" onclick="changeStatus(this)" id =${res.id} >Change Status</button>` : '';
+      const change_location_btn = (res.status === 'Placed' || res.status === 'In Transit') ? `<button class ="Admin-change-location-btn" onclick="changeLocation(this)" id =${res.id}>Change Location</button>` :'';
       neededData += `
     <tr>
     <td>${res.item_name}</td>
@@ -51,15 +53,15 @@ const appendDataToDom = (result) => {
     <td>${res.currentlocation}</td>
     <td>${res.receiver_email}</td>
     <td><span class = ${res.status}> ${res.status} </span></td>
-    <td><button class="Admin-change-status-btn" onclick="changeStatus(this)" id =${res.id} >Change Status</button> </td>
-    <td><button class ="Admin-change-location-btn" onclick="changeLocation(this)" id =${res.id}>Change Location</button></td>
+    <td>${changeStatusButton}</td>
+    <td>${change_location_btn}</td>
     </tr>
     `;
 
     });
     
     const data_To_Be_Appended = `
-     <table>
+     <table class="animated zoomInDown">
      <tr>
     <th>Item Name</th>
     <th>Pick Up Address</th>
