@@ -9,6 +9,8 @@
     <link rel="stylesheet" type="text/css" href="../css/All-SingleOrder.css" />
     <link  rel="stylesheet" type="text/css"  href="../css/animate.css"/>
     <link  rel="stylesheet" type="text/css"  href="../css/Spinner.css"/>
+    <link  rel="stylesheet" type="text/css"  href="../css/all.css"/>
+    <link href="../css/hover-min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Montaga" rel="stylesheet"> 
     <style>
       body{
@@ -34,6 +36,7 @@
                         <li><a href="createOrder.html">Create Parcel Order</a></li>
                         <li><a href="AllOrders.html">View All orders </a></li>
                         <li><a href="UserProfile.html">User Profile</a></li>
+                        <li><a href="#" class = "logoutbtn">Log Out</a></li>
                     </ul>
                 </nav>
             </div>
@@ -46,37 +49,33 @@
         <div class="cube1"></div>
         <div class="cube2"></div>
       </div>    
-<!-- 
 
-<!--  modal-->
-<div id="myModal" class="modal">
- <div class="modal-content">
-    <span class="close">&times;</span><br>
-    
- <form class ="edit-destination-form" method="post"> 
-<label>Destination:</label>
- <input type="text" name ="dest-location[address]" id="DestinationAdressEdit" placeholder="Enter new  Destination" required autocomplete="off">
-
-<br><label for="destination_lng">Destination Longitude</label>
-<input type="text" id="Edit_destination_lng" name="Destination_location[coordinates][0]" required="required" disabled>
-
-<br><label for="destination_lat">Destination Latitude</label>
-<input type="text" id="Edit_destination_lat"  name="Destination_location[coordinates][1]" required="required" disabled>
-  
-
- <br><button class="sub-btn edit-dest"><span>Submit &#8594;</span></button>
-</form>  
-  </div>
-</div>
- <!-- The Modal -->
- 
-   <div>
-       <h1> Google Maps : Coming Soon.... </h1> 
-   </div>
    
     </div>    
+ <!--  modal-->
+<div id="myModal" class="modal" style="text-align:center;">
+  <div class="modal-content">
+     <span class="close">&times;</span><br>
+     
+  <form class ="edit-destination-form" method="post"> 
+ <label>Destination:</label>
+  <input type="text" name ="dest-location[address]" id="DestinationAdressEdit" placeholder="Enter new  Destination" required autocomplete="off">
+ <div style="display:none">
+ <br><label for="destination_lng">Destination Longitude</label>
+ <input type="text" id="Edit_destination_lng" name="Destination_location[coordinates][0]" required="required" disabled>
  
+ <br><label for="destination_lat">Destination Latitude</label>
+ <input type="text" id="Edit_destination_lat"  name="Destination_location[coordinates][1]" required="required" disabled>
+</div> 
+ 
+  <br><button class="sub-btn edit-dest"><span>Submit &#8594;</span></button>
+ </form>  
+   </div>
+ </div>
+  <!-- The Modal -->
  <script src="../js/sweetAlert.js"></script>
  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAddwFzEu83xzv_3kQjwLOrK3d35bmiOKg&amp;libraries=places"></script>
- <script src="../js/FetchSingleOrder.js"></script>     
+ <script src="../js/FetchSingleOrder.js"></script>    
+ <script src="../js/changeDestinationAndCancel.js"></script> 
+ <script src="../js/Logout.js"></script>
 </body>

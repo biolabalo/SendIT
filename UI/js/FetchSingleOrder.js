@@ -57,21 +57,17 @@ const fetchGoogleMaps = async (destination_address, currentlocation) => {
     return `
   
           <h1 style = "color:red"> Destination Map </h1>
-          <img src ="https://maps.googleapis.com/maps/api/staticmap?center=${destination_address}&zoom=13&size=600x300&maptype=roadmap
+          <img  class="map hvr-grow-shadow"src ="https://maps.googleapis.com/maps/api/staticmap?center=${destination_address}&zoom=13&size=600x300&maptype=roadmap
            &markers=color:red%7Clabel:C%7C${destinatonDetails.lat},${destinatonDetails.lng}
           &key=AIzaSyAddwFzEu83xzv_3kQjwLOrK3d35bmiOKg&amp"/>
           
           <h1 style = "color:red"> Current Location  Map </h1>
-          <img src ="https://maps.googleapis.com/maps/api/staticmap?center=${currentlocation}&zoom=13&size=600x300&maptype=roadmap
+          <img class="map hvr-grow-shadow" src ="https://maps.googleapis.com/maps/api/staticmap?center=${currentlocation}&zoom=13&size=600x300&maptype=roadmap
            &markers=color:red%7Clabel:C%7C${currentLocationDetails.lat},${currentLocationDetails.lng}
           &key=AIzaSyAddwFzEu83xzv_3kQjwLOrK3d35bmiOKg&amp"/>
            `;
-          
-          
-          
-      
-    
-    } catch (error) {
+
+  } catch (error) {
 
     return '<img scr = "https://maps.googleapis.com/maps/api/staticmap?center=Berkeley,CA&zoom=14&size=400x400&key=AIzaSyAddwFzEu83xzv_3kQjwLOrK3d35bmiOKg&amp"/>';
   }
@@ -87,55 +83,55 @@ const appendDataToDom = async (data) => {
   const maps = await fetchGoogleMaps(data.destination_address, data.currentlocation);
 
   const buttonActions = (data.status === 'Placed' || data.status === 'In Transit') ? `<div class="cancel-change-destination">
- <button id= "cancel_Order">Cancel Order</button> 
- <button id="change_Direction"> Change Destination</button> 
+ <button id= "cancel_Order" onclick='cancelOrder("${data.id}" , this)'>Cancel Order</button> 
+ <button id="change_Direction" onclick='displayModal("${data.id}")'> Change Destination</button> 
 </div>` : '';
 
   const DataToAppend = `
-<table class ="single-order">
+<table class ="single-order animated slideInLeft">
 
 <tr>
  
 </tr>
 <tr>
-  <td>Item Name</td>
+  <td><b>Item Name</b></td>
   <td>${data.item_name}</td>
 
 </tr>
 <tr>
-  <td>Status</td>
-  <td> <span class ="${data.status}">${data.status}</span></td>
+  <td><b>Status<b/></td>
+  <td> <span class ="${data.status} LocationForAppendingNewData">${data.status}</span></td>
 
    
 </tr>
 <tr>
-  <td>Destination </td>
+  <td> <b>Destination</b></td>
   <td>${data.destination_address}</td>
 
 </tr>
   <tr>
-  <td>Pickup Address </td>
+  <td><b>Pickup Address</b></td>
   <td>${data.pickup_address} </td>
 
 </tr>
 
   <tr>
-  <td>Current location</td>
+  <td><b>Current location</b></td>
   <td> ${data.currentlocation} </td>
 </tr>
 
 <tr>
-  <td>Receiver Name</td>
+  <td><b>Receiver Name</b></td>
   <td>${data.receiver_name} </td>
 
 </tr>
 <tr>
-  <td> Receiver Email</td>
+  <td><b>Receiver Email</b></td>
   <td>${data.receiver_email} </td>
 
 </tr>
 <tr>
-  <td>Item Weight</td>
+  <td><b>Item Weight</b></td>
   <td>${data.item_weight} </td>
 
 </tr>
@@ -147,96 +143,11 @@ ${buttonActions} `;
 
   document.querySelector('.all-orders-container').innerHTML = `
 <blockquote>
-<H1>SINGLE ORDER DELIVERY TO ${data.receiver_name} </H1>
+<H1 style ="color:firebrick"> <i class="fas fa-truck class ="${data.status}"></i>   TO  ${data.receiver_name} </H1>
 </blockquote>
 ${DataToAppend}
 ${maps}
 `;
 
 };
-
-
-
-
-// const cancelorder = document.getElementById('cancel_Order');
-// const changedirection = document.getElementById('change_Direction');
-// const btn = document.getElementById("change_Direction");
-// const span = document.getElementsByClassName("close")[0];
-// const Dest =  document.getElementById('DestinationAdressEdit');
-// const DestLongitude =  document.getElementById('Edit_destination_lng');
-// const DestLatitude = document.getElementById('Edit_destination_lat');
-// const editform = document.querySelector('.edit-destination-form');
-
-
-// const cancelorderfunc = () => {
-
-//     swal({
-//   title: 'Are you sure?',
-//   text: "You won't be able to revert this!",
-//   type: 'warning',
-//   showCancelButton: true,
-//   confirmButtonColor: '#3085d6',
-//   cancelButtonColor: '#d33',
-//   cancelButtonText:'Do Not Cancel',
-//   confirmButtonText: 'Yes, Cancel The Order!',
-// }).then((result) => {
-
-//   if (result.value) {
-//     swal(
-//       'Deleted!',
-//       'Your Order Has Been Cancelled / Deleted',
-//       'success',
-//     ).then( () => {
-//         window.location = 'AllOrders.html';
-//     });
-//   };
-
-// });
-
-// };
-
-
-// const closemodal = () =>  document.getElementById('myModal').style.display = 'none';
-
-// const displaymodal = () => {
-//    document.querySelector('.edit-destination-form').reset();
-//    document.getElementById('myModal').style.display = 'block';
-
-// };
-
-
-// const submitedited = (e) => {
-// e.preventDefault();
-// const Dest =  document.getElementById('DestinationAdressEdit');
-// if (!Dest.value.trim()) return;
-// closemodal();
-
-// };
-
-
-// cancelorder.addEventListener('click', cancelorderfunc  );
-// btn.addEventListener('click', displaymodal );
-// span.addEventListener('click', closemodal );
-// editform.addEventListener('submit', submitedited );
-
-
-
-
-
-// const  autocomplete = ( input ,  latInput , lngInput ) => {
-
-//   if(!input) return;
-//   const dropdown = new google.maps.places.Autocomplete(input);
-
-//     dropdown.addListener('place_changed', () => {
-//     const place = dropdown.getPlace();
-//     latInput.value = place.geometry.location.lat();
-//     lngInput.value = place.geometry.location.lng();
-//   });
-// };
-
-
-// autocomplete(  Dest , DestLatitude ,  DestLongitude );
-
-
 
