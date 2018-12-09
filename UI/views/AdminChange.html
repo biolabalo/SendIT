@@ -10,6 +10,7 @@
     <link rel="stylesheet" type="text/css" href="../css/Spinner.css" /> 
     <link href="https://fonts.googleapis.com/css?family=Montaga" rel="stylesheet"> 
     <link  rel="stylesheet" type="text/css"  href="../css/animate.css"/>
+    <link rel="stylesheet"  type="text/css"  href="../css/swal.css"/>
     <link  rel="stylesheet" type="text/css"  href="../css/all.css"/>
     <style>
         body{
@@ -29,8 +30,7 @@
                     <h2>Main Navigation</h2>
                     <div id="burger-nav"></div>
                     <ul>
-                       
-                        <li><a href="../index.html">Logout</a></li>
+                <li><a href="#" class = "logoutbtn">Log Out</a></li>
                     </ul>
                 </nav>
             </div>
@@ -47,23 +47,21 @@
           </div>
       </div>
           
-
-
  <!-- Change Destination modal-->
 <div id="adminDestionModal" class="modal">
  <div class="modal-content">
     <span class="close">&times;</span><br>
     
  <form class ="Admin-edit-destination-form" method="post"> 
-<label>Destination:</label>
+<label>Current Location:</label>
  <input type="text" name ="Admin-dest-location[address]" id="AdminDestinationAdressEdit" placeholder="Enter new  Destination" required autocomplete="off">
-
+<div style="display: none">
 <br><label for="destination_lng">Destination Longitude</label>
 <input type="text" id="AdminEdit_destination_lng" name="AdminDestination_location[coordinates][0]" required="required" disabled>
 
 <br><label for="destination_lat">Destination Latitude</label>
 <input type="text" id="AdminEdit_destination_lat"  name="AdminDestination_location[coordinates][1]" required="required" disabled>
-  
+</div>
 
  <br><button class="sub-btn edit-dest"><span>Submit &#8594;</span></button>
 </form>  
@@ -74,6 +72,8 @@
  </div>
  </main> 
  <script src="../js/sweetAlert.js"></script>
- <script src ="../js/FetchAllOrdersForAdmin.js"></script>      
- <script src = "../js/AdminChange.js"></script>   
+ <script src ="../js/FetchAllOrdersForAdmin.js"></script>  
+ <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAddwFzEu83xzv_3kQjwLOrK3d35bmiOKg&amp;libraries=places"></script>    
+ <script src = "../js/AdminChange.js"></script> 
+ <script src = "../js/AdminLogout.js"></script>
 </body>
