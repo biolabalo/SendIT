@@ -18,11 +18,6 @@ export default class validator {
       destinationAddress,
     } = req.body;
 
-    if (!checkValidEmail(receiverEmail)) {
-      return res.status(400).json({
-        error: 'email is invalid',
-      });
-    }
 
     if (!validateString(itemName)) {
       return res.status(400).json({
