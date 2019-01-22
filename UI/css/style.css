@@ -69,6 +69,7 @@ section input{
     margin-top:8px;
     padding:5px 5px;
     box-sizing: border-box;   
+    border: 5px;
     background-color: white !important    
 }
 section input:-webkit-autofill,

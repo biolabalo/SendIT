@@ -18,11 +18,6 @@ export default class validator {
       destinationAddress,
     } = req.body;
 
-    if (!validateString(receiverName)) {
-      return res.status(400).json({
-        error: 'name cannot be empty and must be at least three characters',
-      });
-    }
     if (!checkValidEmail(receiverEmail)) {
       return res.status(400).json({
         error: 'email is invalid',
