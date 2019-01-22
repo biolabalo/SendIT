@@ -3,13 +3,23 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/b1448592b95dc873c5bf/maintainability)](https://codeclimate.com/github/biolabalo/SendIT/maintainability)
 # SendIT
 SendIT is a Courier Service App that helps users deliver parcels to different destinations
-
+ [visit App Here](https://send-it-biola.herokuapp.com/views/signIn.html)
 ---
 ## Implemented Features
 * Users can create a parcel delivery order
 * Users can fetch all parcel delivery orders they have made
 * Users can fetch a specific order to view details
-* Users can cancel an order
+* Users can cancel an order which has been placed on in transit
+* Admin can change current location of a parcel with email notifications to the parcel sender
+* Admin can change status of a parcel delivery order with email notifications to the parcel sender
+
+
+## status of parcels Deeliveries
+* Placed
+* In transit
+* Delivered
+* Canceled
+
 
 ## Templates
 UI templates are hosted on Github pages [here](https://biolabalo.github.io/SendIT/UI/)
@@ -26,16 +36,6 @@ UI templates are hosted on Github pages [here](https://biolabalo.github.io/SendI
 * [Chai](http://chaijs.com) - Assertion library.
 
 
-## API Infomormation
-   Heroku https://biola-sendit.herokuapp.com/api/v1/
-
-  | METHOD  | DESCRIPTION                  |             ENDPOINTS                                |
-  | --------| -------------                |          -------------------------------             |
-  | GET     | Get all orders               |      `/api/v1/parcels`                               |
-  | GET     | Get particular order         |    `/api/v1/parcels/:parcelId`                       |
-  | POST    | Create an order              |    `/api/v1/parcels`                                 |
-  | PUT     | Cancel order                 |     `/api/v1/parcels/:parcelId`                      | 
-  | GET     | Fetch all orders by a user   |     `/api/users/:userId/parcels`                     | 
 
 ### Installation
 * Install [NodeJs](https://nodejs.org/en/download/) .
@@ -50,6 +50,69 @@ UI templates are hosted on Github pages [here](https://biolabalo.github.io/SendI
 * To run tests, navigate to the project's root directory
 * After installation, run the following command
     - `npm run test`
+
+
+## API Usage
+
+API BASE URL https://sendit-biola.herokuapp.com/api/v1/. It's recommended to attach a `authorization` Header containing the generated `token` from `/api/v1/auth` to all access all requests.
+
+### Parcel endpoints `/api/v1/parcels`
+
+| method | route          | description             | data                                 |
+| ------ | -------------- | ----------------------- | ------------------------------------ |
+| GET    | /products/:id  | Get a product           |                                      |
+| POST   | /products      | Create a product        |`{name, price, quantity_in_inventory}`|
+| PUT    | /products/:id  | Update a product        |                                      |
+| DELETE | /products/:id  | Delete a product        |                                      |
+
+### Sales endpoints `/api/v1/sales`
+
+| method | route            | description          | data                            |
+| ------ | ---------------- | -------------------- | ------------------------------- |
+| GET    | /sales           | Get all sale records |                                 |
+| POST   | /sales           | Create a sale record | `{product_name, quantity_sold }`|             
+| GET    | /sales/:id       | Get a sale record    |                                 |
+
+
+### Authentication endpoints `/api/v1/auth`
+
+| method | route        | description               | data                                          |
+| ------ | ------------ | ------------------------- | ----------------------------------------------|
+| POST   | /auth/sigin  | Sign In                   | `{email, password}`                           |
+| POST   | /auth/signup | Sign up                   | `{fullname, username, email, password, role}` |
+### Admin only endpoints 
+
+| method | route            | description               | 
+| ------ | -----------------| ------------------------- |
+| GET    | /products        | Get all Parcel Deliveries |                               
+| POST   | /auth/signup     | Sign up                   |
+| PUT    | /api/auth/:id    | Edit a user               |
+
+
+
+
+```javascript
+// login as user
+{
+  email: "biola@gmail.com",
+  password: "customer24"
+}
+
+// login as admin
+{
+  email: "mrb@gmail.com",
+  password: "customer24"
+}
+```
+## API Docs
+https://storemanager15.docs.apiary.io/
+## UI Template
+https://biolabalo.github.io/SendIT/UI/
+## App URL
+https://store-manager-store.herokuapp.com
+
+## Acknowledgements
+Andela
     
 ## Author
 * Balogun Akeem Abiola 

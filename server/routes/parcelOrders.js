@@ -44,3 +44,4 @@ router.put('/:parcel_id/destination', verifyAddresss, verifyToken, changeParcelD
  router.put('/:parcel_id/presentLocation', verifyAddresss, verifyToken, verifyIsAdmin, changeCurrentLocation);
 
 export default router;
+

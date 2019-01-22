@@ -16,10 +16,5 @@ export default class createFunctionValidators {
     return true;
   }
 
-  static validateString(string) {
-    if (typeof string !== 'string') return false;
-    if (string.length < 3 || string.length > 250) return false;
-    const validString = /^[a-zA-Z-'\s\d]+$/;
-    return string.trim().match(validString);
-  }
+ 
 }
