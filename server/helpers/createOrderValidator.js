@@ -19,12 +19,6 @@ export default class validator {
     } = req.body;
 
 
-    if (!validateString(itemName)) {
-      return res.status(400).json({
-        error: 'parcel name cannot be empty and must be at least three characters',
-      });
-    }
-
     if (itemWeight <= 0 || !isNumber(itemWeight)) {
       return res.status(400).json({
         error:
