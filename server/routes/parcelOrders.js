@@ -33,7 +33,6 @@ router.put('/:parcel_id/cancel', verifyToken, cancelParcelOrder);
 // http://localhost:5000/api/v1/parcels
 router.post('/',
   verifyToken,
-  validateCreateParcelData,
   createParcelOrder);
 
   // http://localhost:5000/api/v1/parcels/1/cancel
