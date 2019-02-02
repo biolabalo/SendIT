@@ -17,7 +17,7 @@ export default class OrderController {
    */
   static async getAllParcelOrders(req, res) {
     try {
-      const result = await db('SELECT * FROM parcelorders');
+      const result = await db('SELECT * FROM parcelorders ORDER BY item_name ASC');
       return res.status(200).send({
         status: 200,
         data: result.rows,
@@ -68,7 +68,7 @@ console.log(req.user)
       req.body.itemWeight,
       'Placed',
     ];
-
+console.log('bbbb',values);
     try {
       const { rows } = await db(text, values);
       return res.status(201).send({

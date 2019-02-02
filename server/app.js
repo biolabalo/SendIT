@@ -35,7 +35,7 @@ app.use('*', (req, res) => {
   res.status(404).json({ message: 'Page Not Found. Please go to /api/v1 to use our api' });
 });
 
-const port = 9000;
+const port = 8000;
 // eslint-disable-next-line no-console
 app.listen(process.env.PORT || `${port}`, () => console.log(`Server started at localhost ${port}`));
 
